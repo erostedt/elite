@@ -52,7 +52,6 @@ Constraints:
 0 <= val <= 100
  */
 
-#include <cassert>
 #include <iostream>
 #include <vector>
 

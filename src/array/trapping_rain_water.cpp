@@ -28,7 +28,7 @@ class Solution
   public:
     int trap(vector<int> &height)
     {
-        throw Assert::NotImplemented(__FUNCTION__);
+        NOT_IMPLEMENTED;
     }
 };
 

@@ -53,7 +53,7 @@ class Solution
   public:
     string reverseWords(string s)
     {
-        throw Assert::NotImplemented(__FUNCTION__);
+        NOT_IMPLEMENTED;
     }
 };
 

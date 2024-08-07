@@ -46,9 +46,7 @@ Follow up: Can you come up with an algorithm that runs in O(m + n) time?
 */
 
 #include <algorithm>
-#include <cassert>
 #include <iostream>
-#include <iterator>
 #include <vector>
 
 #include "assert.hpp"

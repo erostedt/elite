@@ -1,15 +1,13 @@
 #pragma once
 
-#include <cassert>
 #include <exception>
-#include <iterator>
 #include <ranges>
 #include <sstream>
 
+#define NOT_IMPLEMENTED (throw Assert::NotImplemented(__FUNCTION__))
+
 namespace Assert
 {
-
-#define NOT_IMPLEMENTED() (NotImplemented(__FUNCTION__))
 
 class ShapeMismatch : public std::exception
 {
