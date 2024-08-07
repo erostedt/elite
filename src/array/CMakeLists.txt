@@ -1,11 +1,23 @@
+add_executable(majority_element majority_element.cpp)
+set_target_properties(majority_element PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(merge_sorted_array merge_sorted_array.cpp)
 set_target_properties(merge_sorted_array PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(remove_duplicates_from_sorted_array remove_duplicates_from_sorted_array.cpp)
+set_target_properties(remove_duplicates_from_sorted_array PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(remove_duplicates_from_sorted_array2 remove_duplicates_from_sorted_array2.cpp)
+set_target_properties(remove_duplicates_from_sorted_array2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
 add_executable(remove_element remove_element.cpp)
 set_target_properties(remove_element PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
 add_executable(reverse_words_in_a_string reverse_words_in_a_string.cpp)
 set_target_properties(reverse_words_in_a_string PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(rotate_array rotate_array.cpp)
+set_target_properties(rotate_array PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
 add_executable(trapping_rain_water trapping_rain_water.cpp)
 set_target_properties(trapping_rain_water PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
