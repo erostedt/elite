@@ -1,3 +1,15 @@
+add_executable(best_time_to_buy_and_sell_stock best_time_to_buy_and_sell_stock.cpp)
+set_target_properties(best_time_to_buy_and_sell_stock PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(best_time_to_buy_and_sell_stock2 best_time_to_buy_and_sell_stock2.cpp)
+set_target_properties(best_time_to_buy_and_sell_stock2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(jump_game jump_game.cpp)
+set_target_properties(jump_game PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(jump_game2 jump_game2.cpp)
+set_target_properties(jump_game2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(length_of_last_word length_of_last_word.cpp)
 set_target_properties(length_of_last_word PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
