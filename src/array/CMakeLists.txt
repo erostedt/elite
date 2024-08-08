@@ -1,3 +1,6 @@
+add_executable(length_of_last_word length_of_last_word.cpp)
+set_target_properties(length_of_last_word PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(majority_element majority_element.cpp)
 set_target_properties(majority_element PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
