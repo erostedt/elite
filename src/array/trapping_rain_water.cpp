@@ -16,19 +16,28 @@ n == height.length
 0 <= height[i] <= 105
  */
 
+#include <algorithm>
+#include <functional>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 #include "assert.hpp"
 
 using namespace std;
+namespace rs = std::ranges;
 
 class Solution
 {
   public:
     int trap(vector<int> &height)
     {
-        NOT_IMPLEMENTED;
+        std::vector<int> water_levels(std::size(height), 0);
+        auto max_it = std::max_element(std::begin(height), std::end(height));
+        std::inclusive_scan(std::begin(height), std::next(max_it), std::begin(water_levels), rs::max);
+        std::inclusive_scan(std::rbegin(height), std::reverse_iterator(max_it), std::rbegin(water_levels), rs::max);
+        return std::transform_reduce(std::cbegin(water_levels), std::cend(water_levels), std::cbegin(height), 0,
+                                     std::plus<>{}, std::minus<>{});
     }
 };
 

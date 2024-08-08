@@ -45,6 +45,8 @@ nums is sorted in non-decreasing order.
 */
 
 #include <iostream>
+#include <iterator>
+#include <unordered_set>
 #include <vector>
 
 #include "assert.hpp"
@@ -56,7 +58,10 @@ class Solution
   public:
     int removeDuplicates(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        std::unordered_set<int> seen;
+        return std::distance(std::begin(nums),
+                             std::remove_if(std::begin(nums), std::end(nums),
+                                            [&seen](const int element) { return !seen.insert(element).second; }));
     }
 };
 

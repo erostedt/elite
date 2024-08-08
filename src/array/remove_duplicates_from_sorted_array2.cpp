@@ -49,6 +49,7 @@ nums is sorted in non-decreasing order.
 */
 
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 #include "assert.hpp"
@@ -60,7 +61,17 @@ class Solution
   public:
     int removeDuplicates(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        std::unordered_map<int, int> counter;
+        auto update_counter = [&counter](const int element) {
+            if (!counter.contains(element))
+            {
+                counter[element] = 0;
+            }
+            auto &count = counter.at(element);
+            count++;
+            return count > 2;
+        };
+        return std::distance(std::begin(nums), std::remove_if(std::begin(nums), std::end(nums), update_counter));
     }
 };
 
