@@ -2,12 +2,20 @@
 Implement the RandomizedSet class:
 
 RandomizedSet() Initializes the RandomizedSet object.
-bool insert(int val) Inserts an item val into the set if not present. Returns true if the item was not present, false
-otherwise. bool remove(int val) Removes an item val from the set if present. Returns true if the item was present, false
-otherwise. int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one
-element exists when this method is called). Each element must have the same probability of being returned. You must
-implement the functions of the class such that each function works in average O(1) time complexity.
 
+bool insert(int val)
+Inserts an item val into the set if not present. Returns true if the item was not present, false
+otherwise.
+
+bool remove(int val)
+Removes an item val from the set if present. Returns true if the item was present, false
+otherwise.
+
+int getRandom()
+Returns a random element from the current set of elements (it's guaranteed that at least one
+element exists when this method is called). Each element must have the same probability of being returned. You must
+
+Implement the functions of the class such that each function works in average O(1) time complexity.
 
 
 Example 1:
@@ -37,6 +45,8 @@ There will be at least one element in the data structure when getRandom is calle
 */
 
 #include <iostream>
+#include <random>
+#include <unordered_map>
 #include <vector>
 
 #include "assert.hpp"
@@ -48,22 +58,59 @@ class RandomizedSet
   public:
     RandomizedSet()
     {
+        m_random_generator = std::mt19937(m_random_device());
     }
 
     bool insert(int val)
     {
-        NOT_IMPLEMENTED;
+        if (m_index_lookup.contains(val))
+        {
+            return false;
+        }
+        m_index_lookup[val] = m_elements.size();
+        m_elements.push_back(val);
+        return true;
     }
 
     bool remove(int val)
     {
-        NOT_IMPLEMENTED;
+        if (!m_index_lookup.contains(val))
+        {
+            return false;
+        }
+        const auto index = m_index_lookup.at(val);
+        m_index_lookup.at(m_elements.back()) = index;
+        std::swap(m_elements.at(index), m_elements.back());
+        m_elements.pop_back();
+        m_index_lookup.erase(val);
+        return true;
     }
 
     int getRandom()
     {
-        NOT_IMPLEMENTED;
+        std::uniform_int_distribution<int> distribution(0, m_elements.size() - 1);
+        return m_elements.at(distribution(m_random_generator));
     }
+
+    void show()
+    {
+        std::cout << "Lookup: " << std::endl;
+        for (const auto &[key, value] : m_index_lookup)
+        {
+            std::cout << key << " -> " << value << std::endl;
+        }
+        std::cout << "Elements: " << std::endl;
+        for (const auto &element : m_elements)
+        {
+            std::cout << element << std::endl;
+        }
+    }
+
+  private:
+    std::unordered_map<int, size_t> m_index_lookup;
+    std::vector<int> m_elements;
+    std::mt19937 m_random_generator;
+    std::random_device m_random_device;
 };
 
 /**
@@ -76,13 +123,30 @@ class RandomizedSet
 
 int main()
 {
-    RandomizedSet rset{};
-    Assert::equal(rset.insert(1), true);
-    Assert::equal(rset.remove(2), false);
-    Assert::equal(rset.insert(2), true);
-    Assert::equal_one_of(rset.getRandom(), {1, 2});
-    Assert::equal(rset.remove(1), true);
-    Assert::equal(rset.insert(2), false);
-    Assert::equal(rset.getRandom(), 2);
+    {
+        RandomizedSet rset{};
+        Assert::equal(rset.insert(1), true);
+        Assert::equal(rset.remove(2), false);
+        Assert::equal(rset.insert(2), true);
+        Assert::equal_one_of(rset.getRandom(), {1, 2});
+        Assert::equal(rset.remove(1), true);
+        Assert::equal(rset.insert(2), false);
+        Assert::equal(rset.getRandom(), 2);
+    }
+
+    {
+        RandomizedSet rset{};
+        Assert::equal(rset.insert(0), true);
+        rset.show();
+        Assert::equal(rset.insert(1), true);
+        rset.show();
+        Assert::equal(rset.remove(0), true);
+        rset.show();
+        Assert::equal(rset.insert(2), true);
+        rset.show();
+        Assert::equal(rset.remove(1), true);
+        rset.show();
+        Assert::equal(rset.getRandom(), 2);
+    }
     std::cout << "All passed" << std::endl;
 }

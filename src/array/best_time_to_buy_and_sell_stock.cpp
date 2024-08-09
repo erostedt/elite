@@ -27,7 +27,10 @@ Constraints:
 0 <= prices[i] <= 104
 */
 
+#include <algorithm>
 #include <iostream>
+#include <iterator>
+#include <numeric>
 #include <vector>
 
 #include "assert.hpp"
@@ -39,7 +42,12 @@ class Solution
   public:
     int maxProfit(vector<int> &prices)
     {
-        NOT_IMPLEMENTED;
+        int min_seen = prices.front();
+        return std::accumulate(std::begin(prices), std::end(prices), 0,
+                               [&min_seen](const int max_profit, const int price) {
+                                   min_seen = std::ranges::min(price, min_seen);
+                                   return std::ranges::max(price - min_seen, max_profit);
+                               });
     }
 };
 

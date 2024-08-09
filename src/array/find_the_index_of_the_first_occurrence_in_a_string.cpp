@@ -34,8 +34,8 @@ class Solution
   public:
     int strStr(string haystack, string needle)
     {
-
-        NOT_IMPLEMENTED;
+        const auto first_occurrence = haystack.find(needle);
+        return (first_occurrence == std::string::npos) ? -1 : first_occurrence;
     }
 };
 
