@@ -17,8 +17,8 @@ n == height.length
  */
 
 #include <algorithm>
-#include <functional>
 #include <iostream>
+#include <iterator>
 #include <numeric>
 #include <vector>
 
@@ -27,17 +27,23 @@ n == height.length
 using namespace std;
 namespace rs = std::ranges;
 
+template <typename Iterator> int get_water_between(Iterator beginning, Iterator end)
+{
+    int max_seen = *beginning;
+    return std::accumulate(beginning, end, 0, [&max_seen](const int accum, const int height) {
+        max_seen = rs::max(max_seen, height);
+        return accum + max_seen - height;
+    });
+}
+
 class Solution
 {
   public:
     int trap(vector<int> &height)
     {
-        std::vector<int> water_levels(std::size(height), 0);
-        auto max_it = std::max_element(std::begin(height), std::end(height));
-        std::inclusive_scan(std::begin(height), std::next(max_it), std::begin(water_levels), rs::max);
-        std::inclusive_scan(std::rbegin(height), std::reverse_iterator(max_it), std::rbegin(water_levels), rs::max);
-        return std::transform_reduce(std::cbegin(water_levels), std::cend(water_levels), std::cbegin(height), 0,
-                                     std::plus<>{}, std::minus<>{});
+        const auto max_it = std::max_element(std::cbegin(height), std::cend(height));
+        return get_water_between(std::cbegin(height), std::next(max_it)) +
+               get_water_between(std::crbegin(height), std::reverse_iterator(max_it));
     }
 };
 
