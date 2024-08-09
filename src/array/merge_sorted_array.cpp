@@ -65,14 +65,16 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         std::vector<int> nums1 = {1, 2, 3, 0, 0, 0};
         std::vector<int> nums2 = {2, 5, 6};
         const int m = 3;
         const int n = 3;
+
         const std::vector<int> expected_output = {1, 2, 2, 3, 5, 6};
-        s.merge(nums1, m, nums2, n);
+        solution.merge(nums1, m, nums2, n);
+
         Assert::equals(nums1, expected_output);
     }
     {
@@ -80,8 +82,10 @@ int main()
         std::vector<int> nums2 = {};
         const int m = 1;
         const int n = 0;
+
         const std::vector<int> expected_output = {1};
-        s.merge(nums1, m, nums2, n);
+        solution.merge(nums1, m, nums2, n);
+
         Assert::equals(nums1, expected_output);
     }
     {
@@ -89,8 +93,10 @@ int main()
         std::vector<int> nums2 = {1};
         const int m = 0;
         const int n = 1;
+
         const std::vector<int> expected_output = {1};
-        s.merge(nums1, m, nums2, n);
+        solution.merge(nums1, m, nums2, n);
+
         Assert::equals(nums1, expected_output);
     }
     std::cout << "All passed" << std::endl;

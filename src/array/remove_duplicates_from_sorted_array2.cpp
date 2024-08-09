@@ -77,17 +77,21 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         std::vector<int> nums{1, 1, 1, 2, 2, 3};
+
         const int expected_output = 5;
-        const int output = s.removeDuplicates(nums);
+        const int output = solution.removeDuplicates(nums);
+
         Assert::equal(output, expected_output);
     }
     {
         std::vector<int> nums{0, 0, 1, 1, 1, 1, 2, 3, 3};
+
         const int expected_output = 7;
-        const int output = s.removeDuplicates(nums);
+        const int output = solution.removeDuplicates(nums);
+
         Assert::equal(output, expected_output);
     }
 

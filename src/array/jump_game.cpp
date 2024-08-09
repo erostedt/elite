@@ -43,17 +43,21 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         std::vector nums{2, 3, 1, 1, 4};
+
         const bool expected_output = true;
-        const bool output = s.canJump(nums);
+        const bool output = solution.canJump(nums);
+
         Assert::equal(output, expected_output);
     }
     {
         std::vector nums{3, 2, 1, 0, 4};
+
         const bool expected_output = false;
-        const bool output = s.canJump(nums);
+        const bool output = solution.canJump(nums);
+
         Assert::equal(output, expected_output);
     }
 

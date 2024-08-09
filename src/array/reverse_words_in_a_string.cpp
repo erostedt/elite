@@ -59,23 +59,29 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
-        std::string input = "the sky is blue";
+        std::string s = "the sky is blue";
+
         std::string expected_output = "blue is sky the";
-        std::string output = s.reverseWords(input);
+        std::string output = solution.reverseWords(s);
+
         Assert::equals(output, expected_output);
     }
     {
-        std::string input = "  hello world  ";
+        std::string s = "  hello world  ";
+
         std::string expected_output = "world hello";
-        std::string output = s.reverseWords(input);
+        std::string output = solution.reverseWords(s);
+
         Assert::equals(output, expected_output);
     }
     {
-        std::string input = "a good   example";
+        std::string s = "a good   example";
+
         std::string expected_output = "example good a";
-        std::string output = s.reverseWords(input);
+        std::string output = solution.reverseWords(s);
+
         Assert::equals(output, expected_output);
     }
 

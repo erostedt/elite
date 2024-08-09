@@ -55,23 +55,29 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         const std::string str = "Hello World";
+
         const int expected_output = 5;
-        const int output = s.lengthOfLastWord(str);
+        const int output = solution.lengthOfLastWord(str);
+
         Assert::equal(output, expected_output);
     }
     {
         const std::string str = "   fly me   to   the moon  ";
+
         const int expected_output = 4;
-        const int output = s.lengthOfLastWord(str);
+        const int output = solution.lengthOfLastWord(str);
+
         Assert::equal(output, expected_output);
     }
     {
         const std::string str = "luffy is still joyboy";
+
         const int expected_output = 6;
-        const int output = s.lengthOfLastWord(str);
+        const int output = solution.lengthOfLastWord(str);
+
         Assert::equal(output, expected_output);
     }
 

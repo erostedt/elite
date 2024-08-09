@@ -70,19 +70,23 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         std::vector<int> nums{3, 2, 2, 3};
         const int val = 3;
+
         const int expected_output = 2;
-        const int output = s.removeElement(nums, val);
+        const int output = solution.removeElement(nums, val);
+
         Assert::equal(output, expected_output);
     }
     {
         std::vector<int> nums{0, 1, 2, 2, 3, 0, 4, 2};
         const int val = 2;
+
         const int expected_output = 5;
-        const int output = s.removeElement(nums, val);
+        const int output = solution.removeElement(nums, val);
+
         Assert::equal(output, expected_output);
     }
 

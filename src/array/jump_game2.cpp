@@ -47,17 +47,21 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         std::vector nums{2, 3, 1, 1, 4};
+
         const int expected_output = 2;
-        const int output = s.jump(nums);
+        const int output = solution.jump(nums);
+
         Assert::equal(output, expected_output);
     }
     {
         std::vector nums{2, 3, 0, 1, 4};
+
         const int expected_output = 2;
-        const int output = s.jump(nums);
+        const int output = solution.jump(nums);
+
         Assert::equal(output, expected_output);
     }
 

@@ -43,17 +43,21 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         std::vector<int> input = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+
         const int expected_output = 6;
-        const int output = s.trap(input);
+        const int output = solution.trap(input);
+
         Assert::equal(output, expected_output);
     }
     {
         std::vector<int> input = {4, 2, 0, 3, 2, 5};
+
         const int expected_output = 9;
-        const int output = s.trap(input);
+        const int output = solution.trap(input);
+
         Assert::equal(output, expected_output);
     }
     std::cout << "All passed" << std::endl;

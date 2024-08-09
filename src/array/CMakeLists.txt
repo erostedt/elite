@@ -4,6 +4,18 @@ set_target_properties(best_time_to_buy_and_sell_stock PROPERTIES RUNTIME_OUTPUT_
 add_executable(best_time_to_buy_and_sell_stock2 best_time_to_buy_and_sell_stock2.cpp)
 set_target_properties(best_time_to_buy_and_sell_stock2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
+add_executable(candy candy.cpp)
+set_target_properties(candy PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(find_the_index_of_the_first_occurrence_in_a_string find_the_index_of_the_first_occurrence_in_a_string.cpp)
+set_target_properties(find_the_index_of_the_first_occurrence_in_a_string PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(gas_station gas_station.cpp)
+set_target_properties(gas_station PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(integer_to_roman integer_to_roman.cpp)
+set_target_properties(integer_to_roman PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(jump_game jump_game.cpp)
 set_target_properties(jump_game PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
@@ -13,11 +25,20 @@ set_target_properties(jump_game2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BIN
 add_executable(length_of_last_word length_of_last_word.cpp)
 set_target_properties(length_of_last_word PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
+add_executable(longest_common_prefix longest_common_prefix.cpp)
+set_target_properties(longest_common_prefix PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(majority_element majority_element.cpp)
 set_target_properties(majority_element PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
 add_executable(merge_sorted_array merge_sorted_array.cpp)
 set_target_properties(merge_sorted_array PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(product_of_array_except_self product_of_array_except_self.cpp)
+set_target_properties(product_of_array_except_self PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(randomized_set randomized_set.cpp)
+set_target_properties(randomized_set PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
 add_executable(remove_duplicates_from_sorted_array remove_duplicates_from_sorted_array.cpp)
 set_target_properties(remove_duplicates_from_sorted_array PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
@@ -31,8 +52,17 @@ set_target_properties(remove_element PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE
 add_executable(reverse_words_in_a_string reverse_words_in_a_string.cpp)
 set_target_properties(reverse_words_in_a_string PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
+add_executable(roman_to_integer roman_to_integer.cpp)
+set_target_properties(roman_to_integer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(rotate_array rotate_array.cpp)
 set_target_properties(rotate_array PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
+add_executable(text_justification text_justification.cpp)
+set_target_properties(text_justification PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(trapping_rain_water trapping_rain_water.cpp)
 set_target_properties(trapping_rain_water PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
+add_executable(zigzag_conversion zigzag_conversion.cpp)
+set_target_properties(zigzag_conversion PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)

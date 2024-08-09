@@ -57,19 +57,23 @@ class Solution
 
 int main()
 {
-    Solution s;
+    Solution solution;
     {
         std::vector<int> nums = {1, 2, 3, 4, 5, 6, 7};
         const int k = 3;
+
         std::vector<int> expected_output = {5, 6, 7, 1, 2, 3, 4};
-        s.rotate(nums, k);
+        solution.rotate(nums, k);
+
         Assert::equals(nums, expected_output);
     }
     {
         std::vector<int> nums = {-1, -100, 3, 99};
         const int k = 2;
+
         std::vector<int> expected_output = {3, 99, -1, -100};
-        s.rotate(nums, k);
+        solution.rotate(nums, k);
+
         Assert::equals(nums, expected_output);
     }
     std::cout << "All passed" << std::endl;

@@ -3,6 +3,7 @@
 #include <exception>
 #include <ranges>
 #include <sstream>
+#include <vector>
 
 #define NOT_IMPLEMENTED (throw Assert::NotImplemented(__FUNCTION__))
 
@@ -56,6 +57,32 @@ class ElementMismatch : public std::exception
     std::string m_message{};
 };
 
+class NotOneOfError : public std::exception
+{
+
+  public:
+    template <typename T> NotOneOfError(const T &lhs, const std::vector<T> &options)
+    {
+        std::stringstream message;
+        message << "Element [" << lhs << "] is not found in: [";
+        for (const T &option : options)
+        {
+            message << option << ", ";
+        }
+        message << "]";
+
+        m_message = message.str();
+    }
+
+    virtual const char *what() const noexcept override
+    {
+        return m_message.c_str();
+    }
+
+  private:
+    std::string m_message{};
+};
+
 class NotImplemented : public std::exception
 {
 
@@ -96,6 +123,18 @@ template <typename T> static void equal(const T &lhs, const T &rhs)
     {
         throw ElementMismatch(lhs, rhs);
     }
+}
+
+template <typename T> static void equal_one_of(const T &lhs, const std::vector<T> &options)
+{
+    for (const T &option : options)
+    {
+        if (lhs == option)
+        {
+            return;
+        }
+    }
+    throw NotOneOfError(lhs, options);
 }
 
 }; // namespace Assert
