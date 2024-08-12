@@ -29,19 +29,48 @@ Constraints:
 It's guaranteed that you can reach nums[n - 1].
 */
 
+#include <algorithm>
 #include <iostream>
+#include <iterator>
+#include <numeric>
+#include <ranges>
 #include <vector>
 
 #include "assert.hpp"
 
 using namespace std;
+namespace stdr = std::ranges;
+namespace stdv = std::ranges::views;
 
 class Solution
 {
   public:
     int jump(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        if (nums.size() < 2)
+        {
+            return true;
+        }
+
+        const auto enumerated = stdv::enumerate(nums);
+        std::inclusive_scan(
+            stdr::cbegin(enumerated), stdr::cend(enumerated), std::begin(nums),
+            [](const int acc, const auto &pair) {
+                const auto &[index, element] = pair;
+                return std::max<int>(acc, index + element);
+            },
+            nums.front());
+
+        int steps = 0;
+        int current = 0;
+        const int target = std::size(nums) - 1;
+        while (current < target)
+        {
+            current = nums.at(current);
+            steps++;
+        }
+
+        return steps;
     }
 };
 

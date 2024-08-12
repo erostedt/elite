@@ -26,18 +26,39 @@ Constraints:
 */
 
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 #include "assert.hpp"
 
 using namespace std;
 
+template <typename Iterator> bool can_reach_target(const Iterator current, const Iterator target)
+{
+    return std::distance(current, target) <= *current;
+}
+
+template <typename Iterator> bool can_jump(const Iterator beginning, const Iterator current, const Iterator target)
+{
+    if (current == beginning)
+    {
+        return can_reach_target(current, target);
+    }
+    else if (can_reach_target(current, target))
+    {
+        return can_jump(beginning, std::prev(current), current);
+    }
+    return can_jump(beginning, std::prev(current), target);
+}
+
 class Solution
 {
   public:
     bool canJump(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        return (nums.size() < 2)
+                   ? true
+                   : can_jump(std::cbegin(nums), std::prev(std::cend(nums), 2), std::prev(std::cend(nums)));
     }
 };
 
