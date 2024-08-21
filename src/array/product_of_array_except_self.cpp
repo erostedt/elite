@@ -33,7 +33,6 @@ space complexity analysis.)
 #include <functional>
 #include <iostream>
 #include <numeric>
-#include <ranges>
 #include <vector>
 
 #include "assert.hpp"
