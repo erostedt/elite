@@ -39,17 +39,53 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 */
 
 #include <iostream>
+#include <sstream>
 
 #include "assert.hpp"
 
 using namespace std;
+
+void sink_row(std::ostringstream &io_sink, const int current_row, std::string_view str, const int num_rows)
+{
+    const int period = 2 * (num_rows - 1);
+    if (current_row == 0 || current_row == num_rows - 1)
+    {
+        auto view = std::ranges::views::stride(str.substr(current_row), period);
+        for (const auto ch : view)
+        {
+            io_sink << ch;
+        }
+        return;
+    }
+
+    auto view = std::ranges::views::stride(str.substr(current_row), period);
+    auto second_view = std::ranges::views::stride(str.substr(period - current_row), period);
+    auto zipped = std::ranges::views::zip(view, second_view);
+    for (const auto [ch1, ch2] : zipped)
+    {
+        io_sink << ch1 << ch2;
+    }
+    if (std::ranges::size(view) > std::ranges::size(second_view))
+    {
+        io_sink << view.back();
+    }
+}
 
 class Solution
 {
   public:
     string convert(string s, int numRows)
     {
-        NOT_IMPLEMENTED;
+        if (numRows < 2)
+        {
+            return s;
+        }
+        std::ostringstream sink;
+        for (int i = 0; i < numRows; ++i)
+        {
+            sink_row(sink, i, s, numRows);
+        }
+        return sink.str();
     }
 };
 
