@@ -33,7 +33,6 @@ n == ratings.length
 #include <iostream>
 #include <iterator>
 #include <numeric>
-#include <ranges>
 #include <vector>
 
 #include "assert.hpp"
