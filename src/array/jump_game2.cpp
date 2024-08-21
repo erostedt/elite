@@ -32,34 +32,26 @@ It's guaranteed that you can reach nums[n - 1].
 #include <algorithm>
 #include <iostream>
 #include <iterator>
-#include <numeric>
-#include <ranges>
 #include <vector>
 
 #include "assert.hpp"
 
 using namespace std;
-namespace stdr = std::ranges;
-namespace stdv = std::ranges::views;
 
 class Solution
 {
   public:
     int jump(vector<int> &nums)
     {
-        if (nums.size() < 2)
+        if (std::size(nums) < 2)
         {
-            return true;
+            return 0;
         }
 
-        const auto enumerated = stdv::enumerate(nums);
-        std::inclusive_scan(
-            stdr::cbegin(enumerated), stdr::cend(enumerated), std::begin(nums),
-            [](const int acc, const auto &pair) {
-                const auto &[index, element] = pair;
-                return std::max<int>(acc, index + element);
-            },
-            nums.front());
+        for (size_t i = 1; i < std::size(nums); ++i)
+        {
+            nums[i] = std::max<int>(nums[i - 1], i + nums[i]);
+        }
 
         int steps = 0;
         int current = 0;

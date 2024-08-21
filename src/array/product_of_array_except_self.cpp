@@ -29,7 +29,11 @@ Follow up: Can you solve the problem in O(1) extra space complexity? (The output
 space complexity analysis.)
 */
 
+#include <algorithm>
+#include <functional>
 #include <iostream>
+#include <numeric>
+#include <ranges>
 #include <vector>
 
 #include "assert.hpp"
@@ -41,7 +45,16 @@ class Solution
   public:
     vector<int> productExceptSelf(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        std::vector<int> product(nums.size(), 1);
+        std::inclusive_scan(std::cbegin(nums), std::prev(std::cend(nums)), std::next(std::begin(product)),
+                            std::multiplies<>{}, 1);
+        int accum = 1;
+        std::transform(std::crbegin(nums), std::prev(std::crend(nums)), std::next(std::crbegin(product)),
+                       std::next(std::rbegin(product)), [&accum](const int num, const int prod) {
+                           accum *= num;
+                           return prod * accum;
+                       });
+        return product;
     }
 };
 
