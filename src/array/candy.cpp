@@ -29,7 +29,11 @@ n == ratings.length
 0 <= ratings[i] <= 2 * 104
 */
 
+#include <functional>
 #include <iostream>
+#include <iterator>
+#include <numeric>
+#include <ranges>
 #include <vector>
 
 #include "assert.hpp"
@@ -41,7 +45,18 @@ class Solution
   public:
     int candy(vector<int> &ratings)
     {
-        NOT_IMPLEMENTED;
+        std::vector<int> candies(std::size(ratings), 1);
+        for (size_t i = 1; i < std::size(ratings); ++i)
+        {
+            if (ratings[i] > ratings[i - 1])
+                candies[i] = candies[i - 1] + 1;
+        }
+        for (size_t i = std::size(ratings) - 1; i > 0; --i)
+        {
+            if (ratings[i - 1] > ratings[i])
+                candies[i - 1] = std::max(candies[i] + 1, candies[i - 1]);
+        }
+        return std::reduce(std::cbegin(candies), std::cend(candies), 0, std::plus<>{});
     }
 };
 
