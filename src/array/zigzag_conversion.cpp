@@ -40,6 +40,7 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 
 #include <iostream>
 #include <sstream>
+#include <string_view>
 
 #include "assert.hpp"
 
@@ -47,27 +48,25 @@ using namespace std;
 
 void sink_row(std::ostringstream &io_sink, const int current_row, std::string_view str, const int num_rows)
 {
-    const int period = 2 * (num_rows - 1);
+    const size_t period = 2 * (num_rows - 1);
+    const size_t start = static_cast<size_t>(current_row);
+    std::string_view wave = start > str.size() ? "" : str.substr(start);
     if (current_row == 0 || current_row == num_rows - 1)
     {
-        auto view = std::ranges::views::stride(str.substr(current_row), period);
-        for (const auto ch : view)
+        for (size_t i = 0; i < wave.size(); i += period)
         {
-            io_sink << ch;
+            io_sink << wave[i];
         }
         return;
     }
 
-    auto view = std::ranges::views::stride(str.substr(current_row), period);
-    auto second_view = std::ranges::views::stride(str.substr(period - current_row), period);
-    auto zipped = std::ranges::views::zip(view, second_view);
-    for (const auto [ch1, ch2] : zipped)
+    const size_t mirror_start = static_cast<size_t>(period - start);
+    std::string_view mirror_wave = mirror_start > str.size() ? "" : str.substr(mirror_start);
+    for (size_t i = 0; i < wave.size(); i += period)
     {
-        io_sink << ch1 << ch2;
-    }
-    if (std::ranges::size(view) > std::ranges::size(second_view))
-    {
-        io_sink << view.back();
+        io_sink << wave[i];
+        if (i < mirror_wave.size())
+            io_sink << mirror_wave[i];
     }
 }
 
@@ -106,6 +105,15 @@ int main()
         const int numRows = 4;
 
         const std::string expected_output = "PINALSIGYAHRPI";
+        const std::string output = solution.convert(s, numRows);
+
+        Assert::equals(output, expected_output);
+    }
+    {
+        std::string s = "A";
+        const int numRows = 3;
+
+        const std::string expected_output = "A";
         const std::string output = solution.convert(s, numRows);
 
         Assert::equals(output, expected_output);
