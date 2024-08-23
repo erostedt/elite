@@ -30,16 +30,33 @@ see if t has its subsequence. In this scenario, how would you change your code?
 
 #include <iostream>
 #include <string>
+#include <string_view>
 
 #include "assert.hpp"
 
 using namespace std;
+
 class Solution
 {
   public:
     bool isSubsequence(string s, string t)
     {
-        NOT_IMPLEMENTED;
+        auto current_char = std::cbegin(s);
+        auto last_char = std::cend(s);
+
+        std::string_view remaining_text(t);
+        while (current_char < last_char)
+        {
+            std::cout << *current_char << ":" << remaining_text << std::endl;
+            size_t match = remaining_text.find(*current_char);
+            if (match == std::string_view::npos)
+            {
+                return false;
+            }
+            ++current_char;
+            remaining_text = remaining_text.substr(match + 1);
+        }
+        return true;
     }
 };
 

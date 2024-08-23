@@ -31,6 +31,7 @@ Constraints:
 s consists only of printable ASCII characters.
 */
 
+#include <cctype>
 #include <iostream>
 #include <string>
 
@@ -42,7 +43,22 @@ class Solution
   public:
     bool isPalindrome(string s)
     {
-        NOT_IMPLEMENTED;
+        std::erase_if(s, [](const char ch) -> bool { return !std::isalnum(ch); });
+        std::transform(std::begin(s), std::end(s), std::begin(s),
+                       [](const char ch) -> char { return std::tolower(ch); });
+        if (s.empty())
+        {
+            return true;
+        }
+
+        auto forward = std::cbegin(s);
+        auto backward = std::prev(std::cend(s));
+        while (forward < backward && *forward == *backward)
+        {
+            ++forward;
+            --backward;
+        }
+        return *forward == *backward;
     }
 };
 
@@ -52,7 +68,7 @@ int main()
     {
         const std::string s = "A man, a plan, a canal: Panama";
 
-        bool expected_output = true;
+        const bool expected_output = true;
         const bool output = solution.isPalindrome(s);
 
         Assert::equal(output, expected_output);
@@ -68,7 +84,18 @@ int main()
     {
         const std::string s = " ";
 
-        const bool expected_output = false;
+        const bool expected_output = true;
+        const bool output = solution.isPalindrome(s);
+
+        Assert::equal(output, expected_output);
+    }
+    {
+        const std::string s =
+            ".........................................................................................................."
+            "......a..................................................................................................."
+            ".........................................................................................................."
+            "...................................";
+        const bool expected_output = true;
         const bool output = solution.isPalindrome(s);
 
         Assert::equal(output, expected_output);

@@ -38,17 +38,47 @@ The tests are generated such that there is exactly one solution.
 */
 
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 #include "assert.hpp"
 
 using namespace std;
+
 class Solution
 {
   public:
     vector<int> twoSum(vector<int> &numbers, int target)
     {
-        NOT_IMPLEMENTED;
+        if (std::size(numbers) < 2)
+        {
+            return {};
+        }
+
+        auto start = std::cbegin(numbers);
+        auto forward = std::cbegin(numbers);
+        auto backward = std::prev(std::cend(numbers));
+        while (forward <= backward)
+        {
+            const int sum = *forward + *backward;
+            if (sum == target)
+            {
+                break;
+            }
+            else if (sum > target)
+            {
+                --backward;
+            }
+            else
+            {
+                ++forward;
+            }
+        }
+
+        const int index1 = static_cast<int>(std::distance(start, forward)) + 1;
+        const int index2 = static_cast<int>(std::distance(start, backward)) + 1;
+
+        return {index1, index2};
     }
 };
 
