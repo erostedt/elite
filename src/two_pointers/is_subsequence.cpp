@@ -47,7 +47,6 @@ class Solution
         std::string_view remaining_text(t);
         while (current_char < last_char)
         {
-            std::cout << *current_char << ":" << remaining_text << std::endl;
             size_t match = remaining_text.find(*current_char);
             if (match == std::string_view::npos)
             {
