@@ -12,3 +12,5 @@ set(SRC_PATH ${PROJECT_SOURCE_DIR}/src)
 include_directories(src)
 
 add_subdirectory(src/array)
+add_subdirectory(src/sliding_window)
+add_subdirectory(src/two_pointers)

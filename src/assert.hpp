@@ -117,6 +117,19 @@ template <typename Container> static void equals(const Container &lhs, const Con
     }
 }
 
+template <typename Matrix> static void matrix_equals(const Matrix &lhs, const Matrix &rhs)
+{
+    if (std::size(lhs) != std::size(rhs))
+    {
+        throw ShapeMismatch(std::size(lhs), std::size(rhs));
+    }
+
+    for (size_t row = 0; row < std::size(lhs); ++row)
+    {
+        equals(lhs[0], rhs[0]);
+    }
+}
+
 template <typename T> static void equal(const T &lhs, const T &rhs)
 {
     if (lhs != rhs)
