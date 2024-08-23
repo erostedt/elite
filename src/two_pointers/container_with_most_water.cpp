@@ -28,18 +28,44 @@ n == height.length
 0 <= height[i] <= 104
 */
 
+#include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 #include "assert.hpp"
 
 using namespace std;
 class Solution
+
 {
   public:
     int maxArea(vector<int> &height)
     {
-        NOT_IMPLEMENTED;
+        if (std::size(height) < 2)
+        {
+            return 0;
+        }
+
+        auto forward = std::cbegin(height);
+        auto backward = std::prev(std::cend(height));
+
+        int max_seen = 0;
+        while (forward < backward)
+        {
+            max_seen =
+                std::max(max_seen, std::min(*forward, *backward) * static_cast<int>(std::distance(forward, backward)));
+
+            if (*forward > *backward)
+            {
+                --backward;
+            }
+            else
+            {
+                ++forward;
+            }
+        }
+        return max_seen;
     }
 };
 
