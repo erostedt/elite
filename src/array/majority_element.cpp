@@ -35,7 +35,25 @@ class Solution
   public:
     int majorityelement(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        int majority = 0;
+        int count = 0;
+        for (const int num : nums)
+        {
+            if (num == majority)
+            {
+                ++count;
+            }
+            else
+            {
+                --count;
+            }
+            if (count <= 0)
+            {
+                majority = num;
+                count = 1;
+            }
+        }
+        return majority;
     }
 };
 
