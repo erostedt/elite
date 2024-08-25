@@ -76,8 +76,8 @@ def get_total_problem_count(section_results: list[SectionResult]) -> int:
 
 def main():
     BUILD_DIR = Path("build")
-    SECTIONS = ["array", "two_pointers", "sliding_window"]
-    section_results = [get_section_result(BUILD_DIR / section) for section in SECTIONS]
+    sections = sorted((path.name for path in Path("src").iterdir() if path.is_dir()))
+    section_results = [get_section_result(BUILD_DIR / section) for section in sections]
     for section_result in section_results:
         print_section_result(section_result)
 
