@@ -28,8 +28,19 @@ ransomNote and magazine consist of lowercase English letters.
 
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 #include "assert.hpp"
+
+std::unordered_map<char, size_t> get_char_counts(const std::string &str)
+{
+    std::unordered_map<char, size_t> counts;
+    for (const char ch : str)
+    {
+        counts[ch] += 1;
+    }
+    return counts;
+}
 
 using namespace std;
 class Solution
@@ -37,7 +48,23 @@ class Solution
   public:
     bool canConstruct(string ransomNote, string magazine)
     {
-        NOT_IMPLEMENTED;
+        auto char_counts = get_char_counts(magazine);
+        for (const char ch : ransomNote)
+        {
+            auto it = char_counts.find(ch);
+            if (it == std::end(char_counts))
+            {
+                return false;
+            }
+
+            auto count = it->second;
+            --count;
+            if (count == 0)
+            {
+                char_counts.erase(ch);
+            }
+        }
+        return true;
     }
 };
 
