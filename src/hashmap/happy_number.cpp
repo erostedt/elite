@@ -31,8 +31,22 @@ Constraints:
 */
 
 #include <iostream>
+#include <unordered_set>
 
 #include "assert.hpp"
+
+int sum_of_squared_digits(int n)
+{
+    int sum = 0;
+    int digit;
+    while (n > 0)
+    {
+        digit = n % 10;
+        sum += digit * digit;
+        n = n / 10;
+    }
+    return sum;
+}
 
 using namespace std;
 class Solution
@@ -40,7 +54,24 @@ class Solution
   public:
     bool isHappy(int n)
     {
-        NOT_IMPLEMENTED;
+        if (n < 1)
+        {
+            return false;
+        }
+
+        std::unordered_set<int> seen;
+        while (n != 1)
+        {
+            if (seen.contains(n))
+            {
+                return false;
+            }
+
+            seen.insert(n);
+            n = sum_of_squared_digits(n);
+        }
+
+        return true;
     }
 };
 

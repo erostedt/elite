@@ -24,6 +24,10 @@ add_executable(ransom_note ransom_note.cpp)
 set_target_properties(ransom_note PROPERTIES RUNTIME_OUTPUT_DIRECTORY
                                              ${CMAKE_BINARY_DIR}/hashmap)
 
+add_executable(two_sum two_sum.cpp)
+set_target_properties(two_sum PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                                             ${CMAKE_BINARY_DIR}/hashmap)
+
 add_executable(valid_anagram valid_anagram.cpp)
 set_target_properties(valid_anagram PROPERTIES RUNTIME_OUTPUT_DIRECTORY
                                                ${CMAKE_BINARY_DIR}/hashmap)
