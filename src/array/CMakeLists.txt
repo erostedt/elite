@@ -13,6 +13,9 @@ set_target_properties(find_the_index_of_the_first_occurrence_in_a_string PROPERT
 add_executable(gas_station gas_station.cpp)
 set_target_properties(gas_station PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
+add_executable(h_index h_index.cpp)
+set_target_properties(h_index PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
+
 add_executable(integer_to_roman integer_to_roman.cpp)
 set_target_properties(integer_to_roman PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/array)
 
