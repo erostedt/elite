@@ -31,6 +31,8 @@ s and t consist of any valid ascii character.
 
 #include <iostream>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 
 #include "assert.hpp"
 
@@ -40,7 +42,31 @@ class Solution
   public:
     bool isIsomorphic(string s, string t)
     {
-        NOT_IMPLEMENTED;
+        if (std::size(s) != std::size(t))
+        {
+            return false;
+        }
+
+        std::unordered_map<char, char> s_to_t;
+        std::unordered_map<char, char> t_to_s;
+        for (size_t i = 0; i < std::size(s); ++i)
+        {
+            char x = s[i];
+            char y = t[i];
+            auto its = s_to_t.find(x);
+            auto itt = t_to_s.find(y);
+            if (its != std::end(s_to_t) && its->second != y)
+            {
+                return false;
+            }
+            if (itt != std::end(t_to_s) && itt->second != x)
+            {
+                return false;
+            }
+            s_to_t[x] = y;
+            t_to_s[y] = x;
+        }
+        return true;
     }
 };
 
@@ -70,6 +96,15 @@ int main()
         const std::string t = "title";
 
         const bool expected_output = true;
+        const bool output = solution.isIsomorphic(s, t);
+
+        Assert::equal(output, expected_output);
+    }
+    {
+        const std::string s = "badc";
+        const std::string t = "baba";
+
+        const bool expected_output = false;
         const bool output = solution.isIsomorphic(s, t);
 
         Assert::equal(output, expected_output);
