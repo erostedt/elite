@@ -23,6 +23,8 @@ Constraints:
 */
 
 #include <iostream>
+#include <iterator>
+#include <unordered_set>
 #include <vector>
 
 #include "assert.hpp"
@@ -33,7 +35,33 @@ class Solution
   public:
     int longestConsecutive(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        unordered_set<int> remaining = {begin(nums), end(nums)};
+        int max_count = 0;
+        for (const auto num : nums)
+        {
+            if (!remaining.contains(num))
+            {
+                continue;
+            }
+
+            auto first = num;
+            auto last = num + 1;
+            while (remaining.contains(first))
+            {
+                remaining.erase(first);
+                --first;
+            }
+
+            while (remaining.contains(last))
+            {
+                remaining.erase(last);
+                ++last;
+            }
+
+            const auto count = last - first - 1;
+            max_count = max(count, max_count);
+        }
+        return max_count;
     }
 };
 
