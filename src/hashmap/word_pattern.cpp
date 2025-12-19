@@ -31,16 +31,55 @@ All the words in s are separated by a single space.
 
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 #include "assert.hpp"
 
 using namespace std;
 class Solution
 {
+    vector<string> split_by_space(const string &s)
+    {
+        istringstream iss(s);
+        vector<string> result;
+        string word;
+
+        while (iss >> word)
+        {
+            result.push_back(word);
+        }
+        return result;
+    }
+
   public:
     bool wordPattern(string pattern, string s)
     {
-        NOT_IMPLEMENTED;
+        const auto words = split_by_space(s);
+        if (pattern.size() != words.size())
+        {
+            return false;
+        }
+
+        unordered_map<char, string> ch_to_str{};
+        for (size_t i = 0; i < pattern.size(); ++i)
+        {
+            auto [it, inserted] = ch_to_str.try_emplace(pattern[i], words[i]);
+            if (!inserted && it->second != words[i])
+            {
+                return false;
+            }
+        }
+
+        unordered_map<string, char> str_to_ch{};
+        for (size_t i = 0; i < pattern.size(); ++i)
+        {
+            auto [it, inserted] = str_to_ch.try_emplace(words[i], pattern[i]);
+            if (!inserted && it->second != pattern[i])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 };
 
@@ -68,6 +107,15 @@ int main()
     {
         const std::string pattern = "aaaa";
         const std::string s = "dog cat cat dog";
+
+        const bool expected_output = false;
+        const bool output = solution.wordPattern(pattern, s);
+
+        Assert::equal(output, expected_output);
+    }
+    {
+        const std::string pattern = "abba";
+        const std::string s = "dog dog dog dog";
 
         const bool expected_output = false;
         const bool output = solution.wordPattern(pattern, s);
