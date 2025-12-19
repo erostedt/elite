@@ -15,11 +15,16 @@ Example 2:
 Input: nums = [0,3,7,2,5,8,4,6,0,1]
 Output: 9
 
+Example 3:
+
+Input: nums = [1,0,1,2]
+Output: 3
+
 
 Constraints:
 
 0 <= nums.length <= 105
--109 <= nums[i] <= 109
+-10^9 <= nums[i] <= 10^9
 */
 
 #include <iostream>

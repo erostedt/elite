@@ -48,6 +48,7 @@ Constraints:
 nums is sorted in non-decreasing order.
 */
 
+#include <algorithm>
 #include <iostream>
 #include <unordered_map>
 #include <vector>

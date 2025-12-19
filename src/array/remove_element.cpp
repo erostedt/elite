@@ -52,6 +52,7 @@ Constraints:
 0 <= val <= 100
  */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 

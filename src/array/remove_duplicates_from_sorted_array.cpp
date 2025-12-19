@@ -44,6 +44,7 @@ Constraints:
 nums is sorted in non-decreasing order.
 */
 
+#include <algorithm>
 #include <iostream>
 #include <iterator>
 #include <unordered_set>

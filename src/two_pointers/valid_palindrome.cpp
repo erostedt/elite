@@ -31,6 +31,7 @@ Constraints:
 s consists only of printable ASCII characters.
 */
 
+#include <algorithm>
 #include <cctype>
 #include <iostream>
 #include <string>
