@@ -27,8 +27,10 @@ Constraints:
 strs[i] consists of lowercase English letters.
 */
 
+#include <algorithm>
 #include <iostream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include "assert.hpp"
@@ -37,9 +39,27 @@ using namespace std;
 class Solution
 {
   public:
+    string sorted(string s)
+    {
+        sort(begin(s), end(s));
+        return s;
+    }
+
     vector<vector<string>> groupAnagrams(vector<string> &strs)
     {
-        NOT_IMPLEMENTED;
+        unordered_map<string, vector<string>> anagrams{};
+        for (const auto &s : strs)
+        {
+            anagrams[sorted(s)].push_back(s);
+        }
+
+        vector<vector<string>> out;
+        out.reserve(anagrams.size());
+        for (auto &&s : anagrams)
+        {
+            out.push_back(s.second);
+        }
+        return out;
     }
 };
 
