@@ -33,6 +33,7 @@ newInterval.length == 2
 0 <= start <= end <= 105
 */
 
+#include <algorithm>
 #include <iostream>
 
 #include "assert.hpp"
@@ -43,7 +44,32 @@ class Solution
   public:
     vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval)
     {
-        NOT_IMPLEMENTED;
+        if (intervals.empty())
+        {
+            return {newInterval};
+        }
+
+        const auto it = find_if(begin(intervals), end(intervals),
+                                [&](const vector<int> &i) { return i.front() > newInterval.front(); });
+
+        intervals.insert(it, newInterval);
+        vector<vector<int>> merged{intervals.front()};
+        for (size_t i = 1; i < intervals.size(); ++i)
+        {
+            auto &last = merged.back();
+            auto &curr = intervals[i];
+
+            // Overlap
+            if (curr.front() <= last.back())
+            {
+                last.back() = max(last.back(), curr.back());
+            }
+            else
+            {
+                merged.push_back(curr);
+            }
+        }
+        return merged;
     }
 };
 
@@ -51,11 +77,11 @@ int main()
 {
     Solution solution;
     {
-        std::vector<std::vector<int>> intervals = {{1, 3}, {6, 9}};
-        std::vector<int> newInterval = {2, 5};
+        vector<vector<int>> intervals = {{1, 3}, {6, 9}};
+        vector<int> newInterval = {2, 5};
 
-        const std::vector<std::vector<int>> expected_output = {{1, 5}, {6, 9}};
-        const std::vector<std::vector<int>> output = solution.insert(intervals, newInterval);
+        const vector<vector<int>> expected_output = {{1, 5}, {6, 9}};
+        const vector<vector<int>> output = solution.insert(intervals, newInterval);
 
         Assert::matrix_equals(output, expected_output);
     }
