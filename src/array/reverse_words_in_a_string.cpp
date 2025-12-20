@@ -41,7 +41,9 @@ in-place with O(1) extra space?
 
  */
 
+#include <algorithm>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "assert.hpp"
@@ -53,7 +55,18 @@ class Solution
   public:
     string reverseWords(string s)
     {
-        NOT_IMPLEMENTED;
+        reverse(begin(s), end(s));
+        istringstream input(s);
+        ostringstream output{};
+        string word;
+
+        while (input >> word)
+        {
+            reverse(begin(word), end(word));
+            output << word << ' ';
+        }
+        auto result = output.str();
+        return (result.empty()) ? "" : result.substr(0, result.size() - 1);
     }
 };
 
@@ -61,26 +74,26 @@ int main()
 {
     Solution solution;
     {
-        std::string s = "the sky is blue";
+        string s = "the sky is blue";
 
-        std::string expected_output = "blue is sky the";
-        std::string output = solution.reverseWords(s);
-
-        Assert::equals(output, expected_output);
-    }
-    {
-        std::string s = "  hello world  ";
-
-        std::string expected_output = "world hello";
-        std::string output = solution.reverseWords(s);
+        string expected_output = "blue is sky the";
+        string output = solution.reverseWords(s);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::string s = "a good   example";
+        string s = "  hello world  ";
 
-        std::string expected_output = "example good a";
-        std::string output = solution.reverseWords(s);
+        string expected_output = "world hello";
+        string output = solution.reverseWords(s);
+
+        Assert::equals(output, expected_output);
+    }
+    {
+        string s = "a good   example";
+
+        string expected_output = "example good a";
+        string output = solution.reverseWords(s);
 
         Assert::equals(output, expected_output);
     }
