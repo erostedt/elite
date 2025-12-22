@@ -34,7 +34,10 @@ Constraints:
 0 <= prices[i] <= 104
 */
 
+#include <algorithm>
+#include <functional>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 #include "assert.hpp"
@@ -46,7 +49,13 @@ class Solution
   public:
     int maxProfit(vector<int> &prices)
     {
-        NOT_IMPLEMENTED;
+        if (size(prices) < 2)
+        {
+            return 0;
+        }
+
+        return transform_reduce(begin(prices), prev(end(prices)), next(begin(prices)), 0, std::plus<>{},
+                                [](int c, int n) { return max(n - c, 0); });
     }
 };
 
