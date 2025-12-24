@@ -48,7 +48,7 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 */
 
 #include <iostream>
-#include <vector>
+#include <string_view>
 
 #include "assert.hpp"
 
@@ -59,7 +59,86 @@ class Solution
   public:
     int romanToInt(string s)
     {
-        NOT_IMPLEMENTED;
+        string_view romans = s;
+        int result = 0;
+        while (!romans.empty())
+        {
+            switch (romans.front())
+            {
+            case 'M':
+                result += 1000;
+                romans = romans.substr(1);
+                continue;
+            case 'D':
+                result += 500;
+                romans = romans.substr(1);
+                continue;
+            case 'C':
+                if (romans.size() > 1)
+                {
+                    switch (romans[1])
+                    {
+                    case 'M':
+                        result += 900;
+                        romans = romans.substr(2);
+                        continue;
+                    case 'D':
+                        result += 400;
+                        romans = romans.substr(2);
+                        continue;
+                    }
+                }
+                result += 100;
+                romans = romans.substr(1);
+                continue;
+
+            case 'L':
+                result += 50;
+                romans = romans.substr(1);
+                continue;
+            case 'X':
+                if (romans.size() > 1)
+                {
+                    switch (romans[1])
+                    {
+                    case 'C':
+                        result += 90;
+                        romans = romans.substr(2);
+                        continue;
+                    case 'L':
+                        result += 40;
+                        romans = romans.substr(2);
+                        continue;
+                    }
+                }
+                result += 10;
+                romans = romans.substr(1);
+                continue;
+            case 'V':
+                result += 5;
+                romans = romans.substr(1);
+                continue;
+            case 'I':
+                if (romans.size() > 1)
+                {
+                    switch (romans[1])
+                    {
+                    case 'X':
+                        result += 9;
+                        romans = romans.substr(2);
+                        continue;
+                    case 'V':
+                        result += 4;
+                        romans = romans.substr(2);
+                        continue;
+                    }
+                }
+                result += 1;
+                romans = romans.substr(1);
+                continue;
+            }
+        }
+        return result;
     }
 };
 
