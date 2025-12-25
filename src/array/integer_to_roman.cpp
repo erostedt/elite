@@ -65,6 +65,7 @@ Constraints:
 */
 
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "assert.hpp"
@@ -76,7 +77,86 @@ class Solution
   public:
     string intToRoman(int num)
     {
-        NOT_IMPLEMENTED;
+        ostringstream stream{};
+        while (num >= 1000)
+        {
+            stream << 'M';
+            num -= 1000;
+        }
+
+        if (num >= 900)
+        {
+            stream << "CM";
+            num -= 900;
+        }
+
+        if (num >= 500)
+        {
+            stream << 'D';
+            num -= 500;
+        }
+
+        if (num >= 400)
+        {
+            stream << "CD";
+            num -= 400;
+        }
+
+        while (num >= 100)
+        {
+            stream << 'C';
+            num -= 100;
+        }
+
+        if (num >= 90)
+        {
+            stream << "XC";
+            num -= 90;
+        }
+
+        if (num >= 50)
+        {
+            stream << 'L';
+            num -= 50;
+        }
+
+        if (num >= 40)
+        {
+            stream << "XL";
+            num -= 40;
+        }
+
+        while (num >= 10)
+        {
+            stream << "X";
+            num -= 10;
+        }
+
+        if (num >= 9)
+        {
+            stream << "IX";
+            num -= 9;
+        }
+
+        if (num >= 5)
+        {
+            stream << "V";
+            num -= 5;
+        }
+
+        if (num >= 4)
+        {
+            stream << "IV";
+            num -= 4;
+        }
+
+        while (num >= 1)
+        {
+            stream << "I";
+            num -= 1;
+        }
+
+        return stream.str();
     }
 };
 
