@@ -39,7 +39,11 @@ All the values of nums are unique.
 nums is sorted in ascending order.
 */
 
+#include <algorithm>
 #include <iostream>
+#include <span>
+#include <string>
+#include <vector>
 
 #include "assert.hpp"
 
@@ -47,9 +51,31 @@ using namespace std;
 class Solution
 {
   public:
+    string make_range(int start, int end)
+    {
+        auto s = to_string(start);
+        if (start == end)
+        {
+            return s;
+        }
+        return s + "->" + to_string(end);
+    }
     vector<string> summaryRanges(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        vector<string> ranges{};
+        span<int> xs = nums;
+        while (!xs.empty())
+        {
+            const auto it = adjacent_find(begin(xs), end(xs), [](int c, int n) { return c + 1 != n; });
+            if (it == end(xs))
+            {
+                ranges.push_back(make_range(xs.front(), xs.back()));
+                return ranges;
+            }
+            ranges.push_back(make_range(xs.front(), *it));
+            xs = xs.subspan(distance(begin(xs), next(it)));
+        }
+        return ranges;
     }
 };
 
