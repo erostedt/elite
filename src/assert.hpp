@@ -150,4 +150,12 @@ template <typename T> static void equal_one_of(const T &lhs, const std::vector<T
     throw NotOneOfError(lhs, options);
 }
 
+template <typename T> static void close(const T lhs, const T rhs, const T tol = T(1e-6))
+{
+    if (std::abs(lhs - rhs) > tol)
+    {
+        throw ElementMismatch(lhs, rhs);
+    }
+}
+
 }; // namespace Assert
