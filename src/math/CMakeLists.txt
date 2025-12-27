@@ -5,3 +5,7 @@ set_target_properties(palindrome_number PROPERTIES RUNTIME_OUTPUT_DIRECTORY
 add_executable(pow pow.cpp)
 set_target_properties(pow PROPERTIES RUNTIME_OUTPUT_DIRECTORY
                                               ${CMAKE_BINARY_DIR}/math)
+
+add_executable(sqrt sqrt.cpp)
+set_target_properties(sqrt PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                                              ${CMAKE_BINARY_DIR}/math)
