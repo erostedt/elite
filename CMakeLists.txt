@@ -9,6 +9,7 @@ set(SRC_PATH ${PROJECT_SOURCE_DIR}/src)
 include_directories(src)
 
 add_subdirectory(src/array)
+add_subdirectory(src/binary_tree_general)
 add_subdirectory(src/hashmap)
 add_subdirectory(src/intervals)
 add_subdirectory(src/linked_list)
