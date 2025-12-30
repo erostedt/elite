@@ -1,5 +1,9 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
+
+#include "assert.hpp"
 
 struct ListNode
 {
@@ -33,6 +37,17 @@ inline ListNode *singly_linked_list(const std::vector<int> &vec)
     return root;
 }
 
+inline std::vector<int> to_vector(const ListNode *head)
+{
+    std::vector<int> v{};
+    while (head)
+    {
+        v.push_back(head->val);
+        head = head->next;
+    }
+    return v;
+}
+
 inline ListNode *tail(ListNode *head)
 {
     while (head->next)
@@ -64,3 +79,12 @@ inline void print_list(ListNode *head)
     }
     std::cout << '\n';
 }
+
+namespace Assert
+{
+
+inline void equals(ListNode *lhs, ListNode *rhs)
+{
+    equals(::to_vector(lhs), ::to_vector(rhs));
+}
+}; // namespace Assert
