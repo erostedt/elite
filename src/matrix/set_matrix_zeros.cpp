@@ -33,6 +33,7 @@ Could you devise a constant space solution?
 */
 
 #include <iostream>
+#include <unordered_set>
 #include <vector>
 
 #include "assert.hpp"
@@ -43,7 +44,34 @@ class Solution
   public:
     void setZeroes(vector<vector<int>> &matrix)
     {
-        NOT_IMPLEMENTED;
+        unordered_set<size_t> zero_rows{};
+        unordered_set<size_t> zero_cols{};
+        for (size_t r = 0; r < matrix.size(); ++r)
+        {
+            for (size_t c = 0; c < matrix[r].size(); ++c)
+            {
+                if (matrix[r][c] == 0)
+                {
+                    zero_rows.insert(r);
+                    zero_cols.insert(c);
+                }
+            }
+        }
+
+        for (size_t r : zero_rows)
+        {
+            for (size_t c = 0; c < matrix[r].size(); ++c)
+            {
+                matrix[r][c] = 0;
+            }
+        }
+        for (size_t c : zero_cols)
+        {
+            for (size_t r = 0; r < matrix.size(); ++r)
+            {
+                matrix[r][c] = 0;
+            }
+        }
     }
 };
 
