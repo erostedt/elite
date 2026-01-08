@@ -52,15 +52,64 @@ using namespace std;
 class Solution
 {
   public:
+    int neighbor_count(const vector<vector<int>> &board, size_t r, size_t c)
+    {
+        const size_t row_count = board.size();
+        const size_t col_count = board[0].size();
+        size_t rstart = r > 0 ? r - 1 : 0;
+        size_t rend = r < row_count - 1 ? r + 1 : row_count - 1;
+        size_t cstart = c > 0 ? c - 1 : 0;
+        size_t cend = c < col_count - 1 ? c + 1 : col_count - 1;
+        int count = 0;
+        for (size_t row = rstart; row <= rend; ++row)
+        {
+            for (size_t col = cstart; col <= cend; ++col)
+            {
+                count += board[row][col];
+            }
+        }
+        count -= board[r][c];
+        return count;
+    }
+
     void gameOfLife(vector<vector<int>> &board)
     {
-        NOT_IMPLEMENTED;
+        if (board.empty())
+        {
+            return;
+        }
+
+        vector<vector<int>> next_state = board;
+
+        const size_t row_count = board.size();
+        const size_t col_count = board[0].size();
+
+        for (size_t r = 0; r < row_count; ++r)
+        {
+            for (size_t c = 0; c < col_count; ++c)
+            {
+                int count = neighbor_count(board, r, c);
+                if (board[r][c] == 1)
+                {
+                    if (count < 2 || count > 3)
+                    {
+                        next_state[r][c] = 0;
+                    }
+                }
+                else if (count == 3)
+                {
+                    next_state[r][c] = 1;
+                }
+            }
+        }
+
+        swap(board, next_state);
     }
 };
 
 int main()
 {
-    using Board = std::vector<std::vector<int>>;
+    using Board = vector<vector<int>>;
 
     Solution solution;
     {
