@@ -23,24 +23,57 @@ n == matrix.length == matrix[i].length
 -1000 <= matrix[i][j] <= 1000
 */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
 #include "assert.hpp"
 
 using namespace std;
+void print_matrix(const vector<vector<int>> &m)
+{
+    for (const auto &r : m)
+    {
+        for (const auto c : r)
+        {
+            cout << c << ' ';
+        }
+        cout << endl;
+    }
+}
+
 class Solution
 {
   public:
+    void transpose(vector<vector<int>> &matrix)
+    {
+        const size_t row_count = matrix.size();
+        const size_t col_count = matrix[0].size();
+        for (size_t r = 0; r < row_count; ++r)
+        {
+            for (size_t c = r + 1; c < col_count; ++c)
+            {
+                swap(matrix[r][c], matrix[c][r]);
+            }
+        }
+    }
     void rotate(vector<vector<int>> &matrix)
     {
-        NOT_IMPLEMENTED;
+        if (matrix.empty())
+        {
+            return;
+        }
+        transpose(matrix);
+        for (auto &row : matrix)
+        {
+            reverse(begin(row), end(row));
+        }
     }
 };
 
 int main()
 {
-    using Matrix = std::vector<std::vector<int>>;
+    using Matrix = vector<vector<int>>;
 
     Solution solution;
     {
