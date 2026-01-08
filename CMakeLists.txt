@@ -10,6 +10,7 @@ include_directories(src)
 
 add_subdirectory(src/array)
 add_subdirectory(src/binary_tree_general)
+add_subdirectory(src/binary_search_tree)
 add_subdirectory(src/DP1D)
 add_subdirectory(src/hashmap)
 add_subdirectory(src/intervals)
