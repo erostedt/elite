@@ -35,3 +35,18 @@ add_executable(construct_binary_tree_from_preorder_and_inorder_traversal
 set_target_properties(
   construct_binary_tree_from_preorder_and_inorder_traversal
   PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/binary_tree_general)
+
+add_executable(path_sum path_sum.cpp)
+set_target_properties(
+  path_sum PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                      ${CMAKE_BINARY_DIR}/binary_tree_general)
+
+add_executable(sum_root_to_leaf_numbers sum_root_to_leaf_numbers.cpp)
+set_target_properties(
+  sum_root_to_leaf_numbers PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                                      ${CMAKE_BINARY_DIR}/binary_tree_general)
+
+add_executable(binary_tree_maximum_path_sum binary_tree_maximum_path_sum.cpp)
+set_target_properties(
+  binary_tree_maximum_path_sum
+  PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/binary_tree_general)
