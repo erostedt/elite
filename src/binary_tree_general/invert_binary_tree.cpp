@@ -25,16 +25,27 @@ The number of nodes in the tree is in the range [0, 100].
 */
 #include <iostream>
 
-#include "assert.hpp"
 #include "binary_tree.hpp"
 
 using namespace std;
 class Solution
 {
   public:
+    void invert(TreeNode *root)
+    {
+        if (!root)
+        {
+            return;
+        }
+        swap(root->left, root->right);
+        invert(root->left);
+        invert(root->right);
+    }
+
     TreeNode *invertTree(TreeNode *root)
     {
-        NOT_IMPLEMENTED;
+        invert(root);
+        return root;
     }
 };
 
@@ -48,7 +59,7 @@ int main()
         TreeNode *expected_output = binary_tree({4, 7, 2, 9, 6, 3, 1});
         TreeNode *output = solution.invertTree(root);
 
-        Assert::equal(output, expected_output);
+        Assert::equals(output, expected_output);
     }
 
     {
@@ -57,7 +68,7 @@ int main()
         TreeNode *expected_output = binary_tree({2, 3, 1});
         TreeNode *output = solution.invertTree(root);
 
-        Assert::equal(output, expected_output);
+        Assert::equals(output, expected_output);
     }
     {
         TreeNode *root = binary_tree({});
@@ -65,7 +76,7 @@ int main()
         TreeNode *expected_output = binary_tree({});
         TreeNode *output = solution.invertTree(root);
 
-        Assert::equal(output, expected_output);
+        Assert::equals(output, expected_output);
     }
 
     cout << "All passed" << endl;
