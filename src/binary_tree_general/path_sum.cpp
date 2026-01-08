@@ -51,7 +51,17 @@ class Solution
 
     bool hasPathSum(TreeNode *root, int targetSum)
     {
-        NOT_IMPLEMENTED;
+        if (is_leaf(root) && targetSum == root->val)
+        {
+            return true;
+        }
+        if (!root || is_leaf(root))
+        {
+            return false;
+        }
+
+        int target = targetSum - root->val;
+        return hasPathSum(root->left, target) || hasPathSum(root->right, target);
     }
 };
 
