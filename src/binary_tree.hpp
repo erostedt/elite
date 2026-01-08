@@ -60,7 +60,7 @@ inline std::vector<int> to_vector(TreeNode *root)
     while (!q.empty())
     {
         auto node = q.front();
-        q.pop_back();
+        q.pop_front();
         if (node)
         {
             v.push_back(node->val);
