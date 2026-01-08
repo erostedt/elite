@@ -1,13 +1,11 @@
-add_executable(cycle cycle.cpp)
-set_target_properties(cycle PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                              ${CMAKE_BINARY_DIR}/linked_list)
+file(GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-add_executable(add_two_numbers add_two_numbers.cpp)
-set_target_properties(add_two_numbers PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                              ${CMAKE_BINARY_DIR}/linked_list)
+foreach(source_file IN LISTS SOURCES)
+  # Get filename without directory and extension
+  get_filename_component(target_name ${source_file} NAME_WE)
 
-
-add_executable(merge_two_sorted_lists merge_two_sorted_lists.cpp)
-set_target_properties(merge_two_sorted_lists PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                              ${CMAKE_BINARY_DIR}/linked_list)
-
+  add_executable(${target_name} ${source_file})
+  set_target_properties(
+    ${target_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                              ${CMAKE_BINARY_DIR}/linked_list)
+endforeach()

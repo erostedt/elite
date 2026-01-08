@@ -1,11 +1,10 @@
-add_executable(palindrome_number palindrome_number.cpp)
-set_target_properties(palindrome_number PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                              ${CMAKE_BINARY_DIR}/math)
+file(GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-add_executable(pow pow.cpp)
-set_target_properties(pow PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                              ${CMAKE_BINARY_DIR}/math)
+foreach(source_file IN LISTS SOURCES)
+  # Get filename without directory and extension
+  get_filename_component(target_name ${source_file} NAME_WE)
 
-add_executable(sqrt sqrt.cpp)
-set_target_properties(sqrt PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                              ${CMAKE_BINARY_DIR}/math)
+  add_executable(${target_name} ${source_file})
+  set_target_properties(${target_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                                                  ${CMAKE_BINARY_DIR}/math)
+endforeach()

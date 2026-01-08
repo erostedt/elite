@@ -1,17 +1,10 @@
-add_executable(insert_interval insert_interval.cpp)
-set_target_properties(insert_interval PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                                 ${CMAKE_BINARY_DIR}/intervals)
+file(GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-add_executable(merge_intervals merge_intervals.cpp)
-set_target_properties(merge_intervals PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                                 ${CMAKE_BINARY_DIR}/intervals)
+foreach(source_file IN LISTS SOURCES)
+  # Get filename without directory and extension
+  get_filename_component(target_name ${source_file} NAME_WE)
 
-add_executable(minimum_number_of_arrows_to_burst_ballons
-               minimum_number_of_arrows_to_burst_ballons.cpp)
-set_target_properties(
-  minimum_number_of_arrows_to_burst_ballons
-  PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/intervals)
-
-add_executable(summary_ranges summary_ranges.cpp)
-set_target_properties(summary_ranges PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                                ${CMAKE_BINARY_DIR}/intervals)
+  add_executable(${target_name} ${source_file})
+  set_target_properties(${target_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                                                  ${CMAKE_BINARY_DIR}/intervals)
+endforeach()
