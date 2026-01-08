@@ -48,9 +48,25 @@ using namespace std;
 class Solution
 {
   public:
+    bool is_leaf(TreeNode *root)
+    {
+        return root && !root->left && !root->right;
+    }
+
+    int sumNumbers(TreeNode *root, int acc)
+    {
+        if (!root)
+        {
+            return 0;
+        }
+
+        acc = acc * 10 + root->val;
+        return is_leaf(root) ? acc : sumNumbers(root->left, acc) + sumNumbers(root->right, acc);
+    }
+
     int sumNumbers(TreeNode *root)
     {
-        NOT_IMPLEMENTED;
+        return sumNumbers(root, 0);
     }
 };
 
