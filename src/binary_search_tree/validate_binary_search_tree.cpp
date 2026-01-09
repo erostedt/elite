@@ -28,7 +28,6 @@ The number of nodes in the tree is in the range [1, 104].
 */
 
 #include <iostream>
-#include <limits>
 
 #include "assert.hpp"
 #include "binary_tree.hpp"
