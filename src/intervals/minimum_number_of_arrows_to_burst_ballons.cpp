@@ -39,17 +39,39 @@ points[i].length == 2
 -231 <= xstart < xend <= 231 - 1
 */
 
+#include <algorithm>
 #include <iostream>
 
 #include "assert.hpp"
 
 using namespace std;
+
 class Solution
 {
   public:
     int findMinArrowShots(vector<vector<int>> &points)
     {
-        NOT_IMPLEMENTED;
+        sort(begin(points), end(points),
+             [](const vector<int> &i1, const vector<int> &i2) { return i1.front() < i2.front(); });
+
+        int shots = 0;
+        while (!points.empty())
+        {
+            const auto interval = points.back();
+            const auto non_overlapping = find_if(next(rbegin(points)), rend(points), [&interval](const vector<int> &p) {
+                return p.back() < interval.front();
+            });
+            if (non_overlapping == rend(points))
+            {
+                points.clear();
+            }
+            else
+            {
+                points.erase(non_overlapping.base(), end(points));
+            }
+            ++shots;
+        }
+        return shots;
     }
 };
 
@@ -57,7 +79,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector<std::vector<int>> points = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
+        vector<vector<int>> points = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
 
         const int expected_output = 2;
         const int output = solution.findMinArrowShots(points);
@@ -65,7 +87,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<std::vector<int>> points = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
+        vector<vector<int>> points = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
 
         const int expected_output = 4;
         const int output = solution.findMinArrowShots(points);
@@ -73,7 +95,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<std::vector<int>> points = {{1, 2}, {2, 3}, {3, 4}, {4, 5}};
+        vector<vector<int>> points = {{1, 2}, {2, 3}, {3, 4}, {4, 5}};
 
         const int expected_output = 2;
         const int output = solution.findMinArrowShots(points);
@@ -81,5 +103,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }
