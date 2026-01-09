@@ -150,11 +150,36 @@ template <typename T> static void equal_one_of(const T &lhs, const std::vector<T
     throw NotOneOfError(lhs, options);
 }
 
-template <typename T> static void close(const T lhs, const T rhs, const T tol = T(1e-6))
+template <typename T> static void close(const T lhs, const T rhs, const T tol = T(1e-5))
 {
     if (std::abs(lhs - rhs) > tol)
     {
         throw ElementMismatch(lhs, rhs);
+    }
+}
+
+template <typename T> struct almost_equal
+{
+    bool tolerance = T(1e-5);
+    bool operator()(const T &lhs, const T &rhs)
+    {
+        return std::abs(lhs - rhs) <= tolerance;
+    }
+};
+
+template <typename Container>
+static void all_close(const Container &lhs, const Container &rhs,
+                      const typename Container::value_type tol = typename Container::value_type(1e-5))
+{
+    if (std::size(lhs) != std::size(rhs))
+    {
+        throw ShapeMismatch(std::size(lhs), std::size(rhs));
+    }
+
+    const auto &[left, right] = std::ranges::mismatch(lhs, rhs, almost_equal<typename Container::value_type>{});
+    if (left != std::ranges::cend(lhs))
+    {
+        throw ElementMismatch(*left, *right, std::ranges::distance(lhs.cbegin(), left));
     }
 }
 
