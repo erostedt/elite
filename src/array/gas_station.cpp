@@ -53,7 +53,29 @@ class Solution
   public:
     int canCompleteCircuit(vector<int> &gas, vector<int> &cost)
     {
-        NOT_IMPLEMENTED;
+        int tank = 0;
+        size_t start = 0;
+        size_t curr = 0;
+        size_t end = size(gas) - 1;
+        while (start < size(gas))
+        {
+            tank += gas[curr] - cost[curr];
+
+            if (curr == end && tank >= 0)
+            {
+                return start;
+            }
+
+            while (start < size(gas) && tank < 0)
+            {
+                tank -= gas[start] - cost[start];
+                ++start;
+                end = (end + 1) % size(gas);
+            }
+
+            curr = (curr + 1) % size(gas);
+        }
+        return -1;
     }
 };
 
@@ -61,17 +83,18 @@ int main()
 {
     Solution solution;
     {
-        std::vector gas = {1, 2, 3, 4, 5};
-        std::vector cost = {3, 4, 5, 1, 2};
+        vector gas = {1, 2, 3, 4, 5};
+        vector cost = {3, 4, 5, 1, 2};
 
         const int expected_output = 3;
         const int output = solution.canCompleteCircuit(gas, cost);
 
         Assert::equal(output, expected_output);
     }
+
     {
-        std::vector gas = {2, 3, 4};
-        std::vector cost = {3, 4, 3};
+        vector gas = {2, 3, 4};
+        vector cost = {3, 4, 3};
 
         const int expected_output = -1;
         const int output = solution.canCompleteCircuit(gas, cost);
@@ -79,5 +102,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }
