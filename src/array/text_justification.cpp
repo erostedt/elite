@@ -61,7 +61,9 @@ words[i] consists of only English letters and symbols.
 words[i].length <= maxWidth
 */
 
+#include <algorithm>
 #include <iostream>
+#include <span>
 
 #include "assert.hpp"
 
@@ -70,9 +72,110 @@ using namespace std;
 class Solution
 {
   public:
+    size_t find_fit(span<string> words, int max_width)
+    {
+        size_t width = 0;
+        for (size_t i = 0; i < words.size(); ++i)
+        {
+            width += words[i].size();
+            if (width > max_width)
+            {
+                return i;
+            }
+            width += 1;
+        }
+        return words.size();
+    }
+
+    void left_justify(span<char> view, span<string> words)
+    {
+        for_each(begin(words), end(words), [&](const string &word) {
+            copy(begin(word), end(word), begin(view));
+            view = view.subspan(word.size() + 1);
+        });
+    }
+
+    void right_justify(span<char> view, span<string> words)
+    {
+        for_each(rbegin(words), rend(words), [&](const string &word) {
+            copy(rbegin(word), rend(word), rbegin(view));
+            view = view.subspan(0, view.size() - word.size() - 1);
+        });
+    }
+
+    void evenly_justify(span<char> view, span<string> words)
+    {
+        if (words.empty())
+        {
+            return;
+        }
+
+        size_t char_count = 0;
+        for (const auto &word : words)
+        {
+            char_count += word.size();
+        }
+
+        size_t gaps = words.size() + 1;
+        size_t total_spaces = size(view) - char_count;
+        size_t space_per_gap = total_spaces / gaps;
+        size_t extra_spaces = total_spaces % gaps;
+
+        size_t pos = 0;
+        for (size_t i = 0; i < size(words); ++i)
+        {
+            pos += space_per_gap + (i < extra_spaces ? 1 : 0);
+            copy(words[i].begin(), words[i].end(), view.begin() + pos);
+            pos += words[i].size();
+        }
+    }
+
+    string justify(span<string> words, int max_width)
+    {
+        string result(max_width, ' ');
+        span<char> view = result;
+        left_justify(view, words.first(1));
+        if (words.size() == 1)
+        {
+            return result;
+        }
+
+        auto middle_words = span(next(begin(words)), prev(end(words)));
+        span<char> middle(begin(view) + words.front().size(), end(view) - words.back().size());
+        evenly_justify(middle, middle_words);
+
+        right_justify(view.last(words.back().size() + 1), words.last(1));
+
+        return result;
+    }
+
     vector<string> fullJustify(vector<string> &words, int maxWidth)
     {
-        NOT_IMPLEMENTED;
+        vector<string> result{};
+        span<string> remaining = words;
+        vector<size_t> splits{};
+
+        while (!remaining.empty())
+        {
+            const size_t i = find_fit(remaining, maxWidth);
+            remaining = remaining.subspan(i);
+            splits.push_back(i);
+        }
+
+        remaining = words;
+        for (size_t k = 0; k < splits.size() - 1; ++k)
+        {
+            const size_t i = splits.at(k);
+            const auto res = justify(remaining.first(i), maxWidth);
+            remaining = remaining.subspan(i);
+            result.push_back(res);
+        }
+
+        string last(maxWidth, ' ');
+        span<char> view = last;
+        left_justify(view, remaining);
+        result.push_back(last);
+        return result;
     }
 };
 
@@ -80,20 +183,21 @@ int main()
 {
     Solution solution;
     {
-        std::vector<std::string> words = {"This", "is", "an", "example", "of", "text", "justification."};
+
+        vector<string> words = {"This", "is", "an", "example", "of", "text", "justification."};
         const int maxWidth = 16;
 
-        std::vector<std::string> expected_output = {"This    is    an", "example  of text", "justification.  "};
-        const std::vector<std::string> output = solution.fullJustify(words, maxWidth);
+        vector<string> expected_output = {"This    is    an", "example  of text", "justification.  "};
+        const vector<string> output = solution.fullJustify(words, maxWidth);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::vector<std::string> words = {"What", "must", "be", "acknowledgment", "shall", "be"};
+        vector<string> words = {"What", "must", "be", "acknowledgment", "shall", "be"};
         const int maxWidth = 16;
 
-        std::vector<std::string> expected_output = {"What   must   be", "acknowledgment  ", "shall be        "};
-        const std::vector<std::string> output = solution.fullJustify(words, maxWidth);
+        vector<string> expected_output = {"What   must   be", "acknowledgment  ", "shall be        "};
+        const vector<string> output = solution.fullJustify(words, maxWidth);
 
         Assert::equals(output, expected_output);
     }
