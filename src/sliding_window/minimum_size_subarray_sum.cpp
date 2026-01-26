@@ -32,6 +32,7 @@ log(n)).
 */
 
 #include <iostream>
+#include <limits>
 #include <vector>
 
 #include "assert.hpp"
@@ -42,7 +43,27 @@ class Solution
   public:
     int minSubArrayLen(int target, vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        size_t head = 0;
+        size_t tail = 0;
+        int acc = 0;
+        const size_t MAX = numeric_limits<size_t>::max();
+        size_t min = MAX;
+
+        while (tail < nums.size())
+        {
+            if (acc < target)
+            {
+                acc += nums[tail];
+                ++tail;
+            }
+            while (acc >= target)
+            {
+                min = std::min(min, tail - head);
+                acc -= nums[head];
+                ++head;
+            }
+        }
+        return min == MAX ? 0 : min;
     }
 };
 
@@ -71,7 +92,7 @@ int main()
         const int target = 11;
         std::vector nums = {1, 1, 1, 1, 1, 1, 1, 1};
 
-        const int expected_output = 1;
+        const int expected_output = 0;
         const int output = solution.minSubArrayLen(target, nums);
 
         Assert::equal(output, expected_output);
