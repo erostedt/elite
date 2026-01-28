@@ -45,11 +45,11 @@ class Solution
   public:
     int lengthOfLastWord(string s)
     {
-        std::ranges::reverse(s);
-        std::istringstream iss(s);
-        std::string last_word;
+        ranges::reverse(s);
+        istringstream iss(s);
+        string last_word;
         iss >> last_word;
-        return std::size(last_word);
+        return size(last_word);
     }
 };
 
@@ -57,7 +57,7 @@ int main()
 {
     Solution solution;
     {
-        const std::string str = "Hello World";
+        const string str = "Hello World";
 
         const int expected_output = 5;
         const int output = solution.lengthOfLastWord(str);
@@ -65,7 +65,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string str = "   fly me   to   the moon  ";
+        const string str = "   fly me   to   the moon  ";
 
         const int expected_output = 4;
         const int output = solution.lengthOfLastWord(str);
@@ -73,7 +73,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string str = "luffy is still joyboy";
+        const string str = "luffy is still joyboy";
 
         const int expected_output = 6;
         const int output = solution.lengthOfLastWord(str);
@@ -81,5 +81,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

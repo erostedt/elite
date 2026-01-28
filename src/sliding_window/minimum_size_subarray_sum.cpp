@@ -72,7 +72,7 @@ int main()
     Solution solution;
     {
         const int target = 7;
-        std::vector nums = {2, 3, 1, 2, 4, 3};
+        vector nums = {2, 3, 1, 2, 4, 3};
 
         const int expected_output = 2;
         const int output = solution.minSubArrayLen(target, nums);
@@ -81,7 +81,7 @@ int main()
     }
     {
         const int target = 4;
-        std::vector nums = {1, 4, 4};
+        vector nums = {1, 4, 4};
 
         const int expected_output = 1;
         const int output = solution.minSubArrayLen(target, nums);
@@ -90,7 +90,7 @@ int main()
     }
     {
         const int target = 11;
-        std::vector nums = {1, 1, 1, 1, 1, 1, 1, 1};
+        vector nums = {1, 1, 1, 1, 1, 1, 1, 1};
 
         const int expected_output = 0;
         const int output = solution.minSubArrayLen(target, nums);
@@ -98,5 +98,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

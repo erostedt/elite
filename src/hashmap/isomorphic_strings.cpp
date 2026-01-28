@@ -42,24 +42,24 @@ class Solution
   public:
     bool isIsomorphic(string s, string t)
     {
-        if (std::size(s) != std::size(t))
+        if (size(s) != size(t))
         {
             return false;
         }
 
-        std::unordered_map<char, char> s_to_t;
-        std::unordered_map<char, char> t_to_s;
-        for (size_t i = 0; i < std::size(s); ++i)
+        unordered_map<char, char> s_to_t;
+        unordered_map<char, char> t_to_s;
+        for (size_t i = 0; i < size(s); ++i)
         {
             char x = s[i];
             char y = t[i];
             auto its = s_to_t.find(x);
             auto itt = t_to_s.find(y);
-            if (its != std::end(s_to_t) && its->second != y)
+            if (its != end(s_to_t) && its->second != y)
             {
                 return false;
             }
-            if (itt != std::end(t_to_s) && itt->second != x)
+            if (itt != end(t_to_s) && itt->second != x)
             {
                 return false;
             }
@@ -74,8 +74,8 @@ int main()
 {
     Solution solution;
     {
-        const std::string s = "egg";
-        const std::string t = "add";
+        const string s = "egg";
+        const string t = "add";
 
         const bool expected_output = true;
         const bool output = solution.isIsomorphic(s, t);
@@ -83,8 +83,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "foo";
-        const std::string t = "bar";
+        const string s = "foo";
+        const string t = "bar";
 
         const bool expected_output = false;
         const bool output = solution.isIsomorphic(s, t);
@@ -92,8 +92,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "paper";
-        const std::string t = "title";
+        const string s = "paper";
+        const string t = "title";
 
         const bool expected_output = true;
         const bool output = solution.isIsomorphic(s, t);
@@ -101,8 +101,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "badc";
-        const std::string t = "baba";
+        const string s = "badc";
+        const string t = "baba";
 
         const bool expected_output = false;
         const bool output = solution.isIsomorphic(s, t);
@@ -110,5 +110,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

@@ -146,7 +146,7 @@ int main()
 {
     Solution solution;
     {
-        std::string s = "III";
+        string s = "III";
 
         const int expected_output = 3;
         const int output = solution.romanToInt(s);
@@ -154,7 +154,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::string s = "LVIII";
+        string s = "LVIII";
 
         const int expected_output = 58;
         const int output = solution.romanToInt(s);
@@ -162,7 +162,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::string s = "MCMXCIV";
+        string s = "MCMXCIV";
 
         const int expected_output = 1994;
         const int output = solution.romanToInt(s);
@@ -170,5 +170,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

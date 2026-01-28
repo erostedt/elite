@@ -58,8 +58,8 @@ class Solution
   public:
     void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
     {
-        std::copy(std::cbegin(nums2), std::cbegin(nums2) + n, std::begin(nums1) + m);
-        std::inplace_merge(std::begin(nums1), std::begin(nums1) + m, std::end(nums1));
+        copy(cbegin(nums2), cbegin(nums2) + n, begin(nums1) + m);
+        inplace_merge(begin(nums1), begin(nums1) + m, end(nums1));
     }
 };
 
@@ -67,37 +67,37 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums1 = {1, 2, 3, 0, 0, 0};
-        std::vector<int> nums2 = {2, 5, 6};
+        vector<int> nums1 = {1, 2, 3, 0, 0, 0};
+        vector<int> nums2 = {2, 5, 6};
         const int m = 3;
         const int n = 3;
 
-        const std::vector<int> expected_output = {1, 2, 2, 3, 5, 6};
+        const vector<int> expected_output = {1, 2, 2, 3, 5, 6};
         solution.merge(nums1, m, nums2, n);
 
         Assert::equals(nums1, expected_output);
     }
     {
-        std::vector<int> nums1 = {1};
-        std::vector<int> nums2 = {};
+        vector<int> nums1 = {1};
+        vector<int> nums2 = {};
         const int m = 1;
         const int n = 0;
 
-        const std::vector<int> expected_output = {1};
+        const vector<int> expected_output = {1};
         solution.merge(nums1, m, nums2, n);
 
         Assert::equals(nums1, expected_output);
     }
     {
-        std::vector<int> nums1 = {0};
-        std::vector<int> nums2 = {1};
+        vector<int> nums1 = {0};
+        vector<int> nums2 = {1};
         const int m = 0;
         const int n = 1;
 
-        const std::vector<int> expected_output = {1};
+        const vector<int> expected_output = {1};
         solution.merge(nums1, m, nums2, n);
 
         Assert::equals(nums1, expected_output);
     }
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

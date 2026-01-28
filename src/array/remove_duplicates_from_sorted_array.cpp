@@ -59,10 +59,9 @@ class Solution
   public:
     int removeDuplicates(vector<int> &nums)
     {
-        std::unordered_set<int> seen;
-        return std::distance(std::begin(nums),
-                             std::remove_if(std::begin(nums), std::end(nums),
-                                            [&seen](const int element) { return !seen.insert(element).second; }));
+        unordered_set<int> seen;
+        return distance(begin(nums), remove_if(begin(nums), end(nums),
+                                               [&seen](const int element) { return !seen.insert(element).second; }));
     }
 };
 
@@ -70,7 +69,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums{1, 1, 2};
+        vector<int> nums{1, 1, 2};
 
         const int expected_output = 2;
         const int output = solution.removeDuplicates(nums);
@@ -78,7 +77,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<int> nums{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        vector<int> nums{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
 
         const int expected_output = 5;
         const int output = solution.removeDuplicates(nums);
@@ -86,5 +85,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

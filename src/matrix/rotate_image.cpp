@@ -93,5 +93,5 @@ int main()
         Assert::matrix_equals(matrix, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

@@ -83,21 +83,21 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums = {0, 1, 2, 4, 5, 7};
+        vector<int> nums = {0, 1, 2, 4, 5, 7};
 
-        const std::vector<std::string> expected_output = {"0->2", "4->5", "7"};
-        const std::vector<std::string> output = solution.summaryRanges(nums);
+        const vector<string> expected_output = {"0->2", "4->5", "7"};
+        const vector<string> output = solution.summaryRanges(nums);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::vector<int> nums = {0, 2, 3, 4, 6, 8, 9};
+        vector<int> nums = {0, 2, 3, 4, 6, 8, 9};
 
-        const std::vector<std::string> expected_output = {"0", "2->4", "6", "8->9"};
-        const std::vector<std::string> output = solution.summaryRanges(nums);
+        const vector<string> expected_output = {"0", "2->4", "6", "8->9"};
+        const vector<string> output = solution.summaryRanges(nums);
 
         Assert::equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

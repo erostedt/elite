@@ -42,8 +42,8 @@ class Solution
   public:
     vector<int> twoSum(vector<int> &nums, int target)
     {
-        std::unordered_map<int, size_t> value_to_index;
-        for (size_t i = 0; i < std::size(nums); ++i)
+        unordered_map<int, size_t> value_to_index;
+        for (size_t i = 0; i < size(nums); ++i)
         {
             int diff = target - nums[i];
             if (value_to_index.contains(diff))
@@ -60,32 +60,34 @@ int main()
 {
     Solution solution;
     {
-        std::vector nums = {2, 7, 11, 15};
+        vector nums = {2, 7, 11, 15};
         const int target = 9;
 
-        const std::vector expected_output = {0, 1};
-        const std::vector output = solution.twoSum(nums, target);
+        const vector expected_output = {0, 1};
+        const vector output = solution.twoSum(nums, target);
 
         Assert::equals(output, expected_output);
     }
+
     {
-        std::vector nums = {3, 2, 4};
+        vector nums = {3, 2, 4};
         const int target = 6;
 
-        const std::vector expected_output = {1, 2};
-        const std::vector output = solution.twoSum(nums, target);
+        const vector expected_output = {1, 2};
+        const vector output = solution.twoSum(nums, target);
 
         Assert::equals(output, expected_output);
     }
+
     {
-        std::vector nums = {3, 3};
+        vector nums = {3, 3};
         const int target = 6;
 
-        const std::vector expected_output = {0, 1};
-        const std::vector output = solution.twoSum(nums, target);
+        const vector expected_output = {0, 1};
+        const vector output = solution.twoSum(nums, target);
 
         Assert::equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

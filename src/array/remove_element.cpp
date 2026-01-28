@@ -65,7 +65,7 @@ class Solution
   public:
     int removeElement(vector<int> &nums, int val)
     {
-        return std::distance(std::begin(nums), std::remove(std::begin(nums), std::end(nums), val));
+        return distance(begin(nums), remove(begin(nums), end(nums), val));
     }
 };
 
@@ -73,7 +73,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums{3, 2, 2, 3};
+        vector<int> nums{3, 2, 2, 3};
         const int val = 3;
 
         const int expected_output = 2;
@@ -82,7 +82,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<int> nums{0, 1, 2, 2, 3, 0, 4, 2};
+        vector<int> nums{0, 1, 2, 2, 3, 0, 4, 2};
         const int val = 2;
 
         const int expected_output = 5;
@@ -91,5 +91,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

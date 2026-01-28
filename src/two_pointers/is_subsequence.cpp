@@ -41,14 +41,14 @@ class Solution
   public:
     bool isSubsequence(string s, string t)
     {
-        auto current_char = std::cbegin(s);
-        auto last_char = std::cend(s);
+        auto current_char = cbegin(s);
+        auto last_char = cend(s);
 
-        std::string_view remaining_text(t);
+        string_view remaining_text(t);
         while (current_char < last_char)
         {
             size_t match = remaining_text.find(*current_char);
-            if (match == std::string_view::npos)
+            if (match == string_view::npos)
             {
                 return false;
             }
@@ -63,8 +63,8 @@ int main()
 {
     Solution solution;
     {
-        const std::string s = "abc";
-        const std::string t = "ahbgdc";
+        const string s = "abc";
+        const string t = "ahbgdc";
 
         const bool expected_output = true;
         const bool output = solution.isSubsequence(s, t);
@@ -72,8 +72,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "axc";
-        const std::string t = "ahbgdc";
+        const string s = "axc";
+        const string t = "ahbgdc";
 
         const bool expected_output = false;
         const bool output = solution.isSubsequence(s, t);
@@ -81,5 +81,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

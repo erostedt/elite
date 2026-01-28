@@ -72,32 +72,32 @@ int main()
 {
     Solution solution;
     {
-        const std::string s = "barfoothefoobarman";
-        std::vector<std::string> words = {"foo", "bar"};
+        const string s = "barfoothefoobarman";
+        vector<string> words = {"foo", "bar"};
 
-        const std::vector<int> expected_output = {0, 9};
-        const std::vector<int> output = solution.findSubstring(s, words);
-
-        Assert::equals(output, expected_output);
-    }
-    {
-        const std::string s = "wordgoodgoodgoodbestword";
-        std::vector<std::string> words = {"word", "good", "best", "word"};
-
-        const std::vector<int> expected_output = {};
-        const std::vector<int> output = solution.findSubstring(s, words);
+        const vector<int> expected_output = {0, 9};
+        const vector<int> output = solution.findSubstring(s, words);
 
         Assert::equals(output, expected_output);
     }
     {
-        const std::string s = "barfoofoobarthefoobarman";
-        std::vector<std::string> words = {"bar", "foo", "the"};
+        const string s = "wordgoodgoodgoodbestword";
+        vector<string> words = {"word", "good", "best", "word"};
 
-        const std::vector<int> expected_output = {6, 9, 12};
-        const std::vector<int> output = solution.findSubstring(s, words);
+        const vector<int> expected_output = {};
+        const vector<int> output = solution.findSubstring(s, words);
+
+        Assert::equals(output, expected_output);
+    }
+    {
+        const string s = "barfoofoobarthefoobarman";
+        vector<string> words = {"bar", "foo", "the"};
+
+        const vector<int> expected_output = {6, 9, 12};
+        const vector<int> output = solution.findSubstring(s, words);
 
         Assert::equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

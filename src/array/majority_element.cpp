@@ -61,7 +61,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums = {3, 2, 3};
+        vector<int> nums = {3, 2, 3};
 
         const int expected_output = 3;
         const int output = solution.majorityelement(nums);
@@ -69,12 +69,12 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<int> nums = {2, 2, 1, 1, 1, 2, 2};
+        vector<int> nums = {2, 2, 1, 1, 1, 2, 2};
 
         const int expected_output = 2;
         const int output = solution.majorityelement(nums);
 
         Assert::equal(output, expected_output);
     }
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

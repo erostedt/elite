@@ -37,12 +37,12 @@ class Solution
   public:
     bool containsNearbyDuplicate(vector<int> &nums, int k)
     {
-        std::unordered_map<int, int> num_to_max_index;
+        unordered_map<int, int> num_to_max_index;
         size_t max = k;
-        for (size_t i = 0; i < std::size(nums); ++i)
+        for (size_t i = 0; i < size(nums); ++i)
         {
             const auto it = num_to_max_index.find(nums[i]);
-            if (it != std::cend(num_to_max_index) && (i - it->second) <= max)
+            if (it != cend(num_to_max_index) && (i - it->second) <= max)
             {
                 return true;
             }
@@ -56,7 +56,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums = {1, 2, 3, 1};
+        vector<int> nums = {1, 2, 3, 1};
         const int k = 3;
 
         const bool expected_output = true;
@@ -65,7 +65,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<int> nums = {1, 0, 1, 1};
+        vector<int> nums = {1, 0, 1, 1};
         const int k = 1;
 
         const bool expected_output = true;
@@ -74,7 +74,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<int> nums = {1, 2, 3, 1, 2, 3};
+        vector<int> nums = {1, 2, 3, 1, 2, 3};
         const int k = 2;
 
         const bool expected_output = false;
@@ -83,5 +83,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

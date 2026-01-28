@@ -59,7 +59,7 @@ class Solution
             return false;
         }
 
-        std::unordered_set<int> seen;
+        unordered_set<int> seen;
         while (n != 1)
         {
             if (seen.contains(n))
@@ -95,5 +95,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

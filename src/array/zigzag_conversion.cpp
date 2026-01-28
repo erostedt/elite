@@ -46,11 +46,11 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 
 using namespace std;
 
-void sink_row(std::ostringstream &io_sink, const int current_row, std::string_view str, const int num_rows)
+void sink_row(ostringstream &io_sink, const int current_row, string_view str, const int num_rows)
 {
     const size_t period = 2 * (num_rows - 1);
     const size_t start = static_cast<size_t>(current_row);
-    std::string_view wave = start > str.size() ? "" : str.substr(start);
+    string_view wave = start > str.size() ? "" : str.substr(start);
     if (current_row == 0 || current_row == num_rows - 1)
     {
         for (size_t i = 0; i < wave.size(); i += period)
@@ -61,7 +61,7 @@ void sink_row(std::ostringstream &io_sink, const int current_row, std::string_vi
     }
 
     const size_t mirror_start = static_cast<size_t>(period - start);
-    std::string_view mirror_wave = mirror_start > str.size() ? "" : str.substr(mirror_start);
+    string_view mirror_wave = mirror_start > str.size() ? "" : str.substr(mirror_start);
     for (size_t i = 0; i < wave.size(); i += period)
     {
         io_sink << wave[i];
@@ -79,7 +79,7 @@ class Solution
         {
             return s;
         }
-        std::ostringstream sink;
+        ostringstream sink;
         for (int i = 0; i < numRows; ++i)
         {
             sink_row(sink, i, s, numRows);
@@ -92,32 +92,32 @@ int main()
 {
     Solution solution;
     {
-        std::string s = "PAYPALISHIRING";
+        string s = "PAYPALISHIRING";
         const int numRows = 3;
 
-        const std::string expected_output = "PAHNAPLSIIGYIR";
-        const std::string output = solution.convert(s, numRows);
+        const string expected_output = "PAHNAPLSIIGYIR";
+        const string output = solution.convert(s, numRows);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::string s = "PAYPALISHIRING";
+        string s = "PAYPALISHIRING";
         const int numRows = 4;
 
-        const std::string expected_output = "PINALSIGYAHRPI";
-        const std::string output = solution.convert(s, numRows);
+        const string expected_output = "PINALSIGYAHRPI";
+        const string output = solution.convert(s, numRows);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::string s = "A";
+        string s = "A";
         const int numRows = 3;
 
-        const std::string expected_output = "A";
-        const std::string output = solution.convert(s, numRows);
+        const string expected_output = "A";
+        const string output = solution.convert(s, numRows);
 
         Assert::equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

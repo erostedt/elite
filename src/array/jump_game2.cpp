@@ -43,19 +43,19 @@ class Solution
   public:
     int jump(vector<int> &nums)
     {
-        if (std::size(nums) < 2)
+        if (size(nums) < 2)
         {
             return 0;
         }
 
-        for (size_t i = 1; i < std::size(nums); ++i)
+        for (size_t i = 1; i < size(nums); ++i)
         {
-            nums[i] = std::max<int>(nums[i - 1], i + nums[i]);
+            nums[i] = max<int>(nums[i - 1], i + nums[i]);
         }
 
         int steps = 0;
         int current = 0;
-        const int target = std::size(nums) - 1;
+        const int target = size(nums) - 1;
         while (current < target)
         {
             current = nums.at(current);
@@ -70,7 +70,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector nums{2, 3, 1, 1, 4};
+        vector nums{2, 3, 1, 1, 4};
 
         const int expected_output = 2;
         const int output = solution.jump(nums);
@@ -78,7 +78,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector nums{2, 3, 0, 1, 4};
+        vector nums{2, 3, 0, 1, 4};
 
         const int expected_output = 2;
         const int output = solution.jump(nums);
@@ -86,5 +86,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

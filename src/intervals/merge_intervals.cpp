@@ -70,7 +70,7 @@ void print_intervals(const vector<vector<int>> &intervals)
 {
     for (const auto &i : intervals)
     {
-        std::cout << i.front() << ", " << i.back() << std::endl;
+        cout << i.front() << ", " << i.back() << endl;
     }
 }
 
@@ -78,24 +78,23 @@ int main()
 {
     Solution solution;
     {
-        std::vector<std::vector<int>> intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        vector<vector<int>> intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
 
         print_intervals(intervals);
-        const std::vector<std::vector<int>> expected_output = {{1, 6}, {8, 10}, {15, 18}};
-        const std::vector<std::vector<int>> output = solution.merge(intervals);
-        std::cout << "***************" << std::endl;
-        print_intervals(output);
+        const vector<vector<int>> expected_output = {{1, 6}, {8, 10}, {15, 18}};
+        const vector<vector<int>> output = solution.merge(intervals);
 
         Assert::matrix_equals(output, expected_output);
     }
+
     {
-        std::vector<std::vector<int>> intervals = {{1, 4}, {4, 5}};
+        vector<vector<int>> intervals = {{1, 4}, {4, 5}};
 
-        const std::vector<std::vector<int>> expected_output = {{1, 5}};
-        const std::vector<std::vector<int>> output = solution.merge(intervals);
+        const vector<vector<int>> expected_output = {{1, 5}};
+        const vector<vector<int>> output = solution.merge(intervals);
 
         Assert::matrix_equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

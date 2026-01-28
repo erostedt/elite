@@ -63,7 +63,7 @@ struct TripletHash
 {
     size_t operator()(const Triplet &triplet) const
     {
-        std::size_t hash = 0;
+        size_t hash = 0;
         std::hash<int> int_hasher{};
         hash ^= int_hasher(triplet.first) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
         hash ^= int_hasher(triplet.second) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
@@ -72,11 +72,10 @@ struct TripletHash
     }
 };
 
-using TripletSet = std::unordered_set<Triplet, TripletHash, TripletEqual>;
+using TripletSet = unordered_set<Triplet, TripletHash, TripletEqual>;
 
 template <typename Iterator>
-void _two_sum(Iterator forward, Iterator backward, int target, std::vector<std::vector<int>> &triplets,
-              TripletSet &seen)
+void _two_sum(Iterator forward, Iterator backward, int target, vector<vector<int>> &triplets, TripletSet &seen)
 {
     while (forward < backward)
     {
@@ -107,21 +106,21 @@ class Solution
   public:
     vector<vector<int>> threeSum(vector<int> &nums)
     {
-        if (std::size(nums) < 3)
+        if (size(nums) < 3)
         {
             return {};
         }
 
-        std::sort(std::begin(nums), std::end(nums));
+        sort(begin(nums), end(nums));
 
-        std::vector<std::vector<int>> triplets;
-        auto forward = std::cbegin(nums);
-        auto last = std::prev(std::cend(nums));
+        vector<vector<int>> triplets;
+        auto forward = cbegin(nums);
+        auto last = prev(cend(nums));
         TripletSet seen;
         while (forward < last)
         {
             const int target = -(*forward);
-            _two_sum(std::next(forward), last, target, triplets, seen);
+            _two_sum(next(forward), last, target, triplets, seen);
             ++forward;
         }
         return triplets;
@@ -132,37 +131,37 @@ int main()
 {
     Solution solution;
     {
-        std::vector numbers = {-1, 0, 1, 2, -1, -4};
+        vector numbers = {-1, 0, 1, 2, -1, -4};
 
-        const std::vector<std::vector<int>> expected_output = {{-1, -1, 2}, {-1, 0, 1}};
-        const std::vector<std::vector<int>> output = solution.threeSum(numbers);
-
-        Assert::matrix_equals(output, expected_output);
-    }
-    {
-        std::vector numbers = {0, 1, 1};
-
-        const std::vector<std::vector<int>> expected_output = {};
-        const std::vector<std::vector<int>> output = solution.threeSum(numbers);
+        const vector<vector<int>> expected_output = {{-1, -1, 2}, {-1, 0, 1}};
+        const vector<vector<int>> output = solution.threeSum(numbers);
 
         Assert::matrix_equals(output, expected_output);
     }
     {
-        std::vector numbers = {0, 0, 0};
+        vector numbers = {0, 1, 1};
 
-        const std::vector<std::vector<int>> expected_output = {{0, 0, 0}};
-        const std::vector<std::vector<int>> output = solution.threeSum(numbers);
+        const vector<vector<int>> expected_output = {};
+        const vector<vector<int>> output = solution.threeSum(numbers);
 
         Assert::matrix_equals(output, expected_output);
     }
     {
-        std::vector numbers = {0, 0, 0, 0};
+        vector numbers = {0, 0, 0};
 
-        const std::vector<std::vector<int>> expected_output = {{0, 0, 0}};
-        const std::vector<std::vector<int>> output = solution.threeSum(numbers);
+        const vector<vector<int>> expected_output = {{0, 0, 0}};
+        const vector<vector<int>> output = solution.threeSum(numbers);
+
+        Assert::matrix_equals(output, expected_output);
+    }
+    {
+        vector numbers = {0, 0, 0, 0};
+
+        const vector<vector<int>> expected_output = {{0, 0, 0}};
+        const vector<vector<int>> output = solution.threeSum(numbers);
 
         Assert::matrix_equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

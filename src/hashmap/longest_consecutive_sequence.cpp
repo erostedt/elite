@@ -74,7 +74,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums = {100, 4, 200, 1, 3, 2};
+        vector<int> nums = {100, 4, 200, 1, 3, 2};
 
         const int expected_output = 4;
         const int output = solution.longestConsecutive(nums);
@@ -82,12 +82,12 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<int> nums = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
+        vector<int> nums = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
 
         const int expected_output = 9;
         const int output = solution.longestConsecutive(nums);
 
         Assert::equal(output, expected_output);
     }
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

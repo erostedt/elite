@@ -54,7 +54,7 @@ class Solution
             return 0;
         }
 
-        return transform_reduce(begin(prices), prev(end(prices)), next(begin(prices)), 0, std::plus<>{},
+        return transform_reduce(begin(prices), prev(end(prices)), next(begin(prices)), 0, plus<>{},
                                 [](int c, int n) { return max(n - c, 0); });
     }
 };
@@ -63,7 +63,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector prices{7, 1, 5, 3, 6, 4};
+        vector prices{7, 1, 5, 3, 6, 4};
 
         const int expected_output = 7;
         const int output = solution.maxProfit(prices);
@@ -71,7 +71,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector prices{1, 2, 3, 4, 5};
+        vector prices{1, 2, 3, 4, 5};
 
         const int expected_output = 4;
         const int output = solution.maxProfit(prices);
@@ -79,7 +79,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector prices{7, 6, 4, 3, 1};
+        vector prices{7, 6, 4, 3, 1};
 
         const int expected_output = 0;
         const int output = solution.maxProfit(prices);
@@ -87,5 +87,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

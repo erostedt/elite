@@ -56,32 +56,32 @@ int main()
 {
     Solution solution;
     {
-        const std::string s = "ADOBECODEBANC";
-        const std::string t = "ABC";
+        const string s = "ADOBECODEBANC";
+        const string t = "ABC";
 
-        const std::string expected_output = "BANC";
-        const std::string output = solution.minWindow(s, t);
-
-        Assert::equal(output, expected_output);
-    }
-    {
-        const std::string s = "a";
-        const std::string t = "a";
-
-        const std::string expected_output = "a";
-        const std::string output = solution.minWindow(s, t);
+        const string expected_output = "BANC";
+        const string output = solution.minWindow(s, t);
 
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "a";
-        const std::string t = "aa";
+        const string s = "a";
+        const string t = "a";
 
-        const std::string expected_output = "";
-        const std::string output = solution.minWindow(s, t);
+        const string expected_output = "a";
+        const string output = solution.minWindow(s, t);
+
+        Assert::equal(output, expected_output);
+    }
+    {
+        const string s = "a";
+        const string t = "aa";
+
+        const string expected_output = "";
+        const string output = solution.minWindow(s, t);
 
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

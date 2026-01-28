@@ -87,8 +87,8 @@ int main()
 {
     Solution solution;
     {
-        const std::string pattern = "abba";
-        const std::string s = "dog cat cat dog";
+        const string pattern = "abba";
+        const string s = "dog cat cat dog";
 
         const bool expected_output = true;
         const bool output = solution.wordPattern(pattern, s);
@@ -96,8 +96,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string pattern = "abba";
-        const std::string s = "dog cat cat fish";
+        const string pattern = "abba";
+        const string s = "dog cat cat fish";
 
         const bool expected_output = false;
         const bool output = solution.wordPattern(pattern, s);
@@ -105,8 +105,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string pattern = "aaaa";
-        const std::string s = "dog cat cat dog";
+        const string pattern = "aaaa";
+        const string s = "dog cat cat dog";
 
         const bool expected_output = false;
         const bool output = solution.wordPattern(pattern, s);
@@ -114,8 +114,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string pattern = "abba";
-        const std::string s = "dog dog dog dog";
+        const string pattern = "abba";
+        const string s = "dog dog dog dog";
 
         const bool expected_output = false;
         const bool output = solution.wordPattern(pattern, s);
@@ -123,5 +123,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

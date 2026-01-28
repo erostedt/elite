@@ -44,16 +44,15 @@ class Solution
   public:
     bool isPalindrome(string s)
     {
-        std::erase_if(s, [](const char ch) -> bool { return !std::isalnum(ch); });
-        std::transform(std::begin(s), std::end(s), std::begin(s),
-                       [](const char ch) -> char { return std::tolower(ch); });
+        erase_if(s, [](const char ch) -> bool { return !isalnum(ch); });
+        transform(begin(s), end(s), begin(s), [](const char ch) -> char { return tolower(ch); });
         if (s.empty())
         {
             return true;
         }
 
-        auto forward = std::cbegin(s);
-        auto backward = std::prev(std::cend(s));
+        auto forward = cbegin(s);
+        auto backward = prev(cend(s));
         while (forward < backward && *forward == *backward)
         {
             ++forward;
@@ -67,7 +66,7 @@ int main()
 {
     Solution solution;
     {
-        const std::string s = "A man, a plan, a canal: Panama";
+        const string s = "A man, a plan, a canal: Panama";
 
         const bool expected_output = true;
         const bool output = solution.isPalindrome(s);
@@ -75,7 +74,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "race a car";
+        const string s = "race a car";
 
         const bool expected_output = false;
         const bool output = solution.isPalindrome(s);
@@ -83,7 +82,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = " ";
+        const string s = " ";
 
         const bool expected_output = true;
         const bool output = solution.isPalindrome(s);
@@ -91,7 +90,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s =
+        const string s =
             ".........................................................................................................."
             "......a..................................................................................................."
             ".........................................................................................................."
@@ -102,5 +101,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

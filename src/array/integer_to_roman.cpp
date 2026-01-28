@@ -166,27 +166,27 @@ int main()
     {
         const int num = 3749;
 
-        const std::string expected_output = "MMMDCCXLIX";
-        const std::string output = solution.intToRoman(num);
+        const string expected_output = "MMMDCCXLIX";
+        const string output = solution.intToRoman(num);
 
         Assert::equal(output, expected_output);
     }
     {
         const int num = 58;
 
-        const std::string expected_output = "LVIII";
-        const std::string output = solution.intToRoman(num);
+        const string expected_output = "LVIII";
+        const string output = solution.intToRoman(num);
 
         Assert::equal(output, expected_output);
     }
     {
         const int num = 1994;
 
-        const std::string expected_output = "MCMXCIV";
-        const std::string output = solution.intToRoman(num);
+        const string expected_output = "MCMXCIV";
+        const string output = solution.intToRoman(num);
 
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

@@ -39,11 +39,6 @@ s consists of English letters, digits, symbols and spaces.
 
 using namespace std;
 
-void print_vec(vector<char> v)
-{
-    string s = {v.begin(), v.end()};
-    std::cout << s << std::endl;
-}
 class Solution
 {
   public:
@@ -70,7 +65,7 @@ int main()
 {
     Solution solution;
     {
-        const std::string s = "abcabcbb";
+        const string s = "abcabcbb";
 
         const int expected_output = 3;
         const int output = solution.lengthOfLongestSubstring(s);
@@ -78,7 +73,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "bbbbb";
+        const string s = "bbbbb";
 
         const int expected_output = 1;
         const int output = solution.lengthOfLongestSubstring(s);
@@ -86,7 +81,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "pwwkew";
+        const string s = "pwwkew";
 
         const int expected_output = 3;
         const int output = solution.lengthOfLongestSubstring(s);
@@ -95,7 +90,7 @@ int main()
     }
 
     {
-        const std::string s = " ";
+        const string s = " ";
 
         const int expected_output = 1;
         const int output = solution.lengthOfLongestSubstring(s);
@@ -104,7 +99,7 @@ int main()
     }
 
     {
-        const std::string s = "aabaab!bb";
+        const string s = "aabaab!bb";
 
         const int expected_output = 3;
         const int output = solution.lengthOfLongestSubstring(s);
@@ -112,5 +107,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

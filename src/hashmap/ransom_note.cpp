@@ -32,9 +32,11 @@ ransomNote and magazine consist of lowercase English letters.
 
 #include "assert.hpp"
 
-std::unordered_map<char, size_t> get_char_counts(const std::string &str)
+using namespace std;
+
+unordered_map<char, size_t> get_char_counts(const string &str)
 {
-    std::unordered_map<char, size_t> counts;
+    unordered_map<char, size_t> counts;
     for (const char ch : str)
     {
         counts[ch] += 1;
@@ -42,7 +44,6 @@ std::unordered_map<char, size_t> get_char_counts(const std::string &str)
     return counts;
 }
 
-using namespace std;
 class Solution
 {
   public:
@@ -52,7 +53,7 @@ class Solution
         for (const char ch : ransomNote)
         {
             auto it = char_counts.find(ch);
-            if (it == std::end(char_counts))
+            if (it == end(char_counts))
             {
                 return false;
             }
@@ -72,8 +73,8 @@ int main()
 {
     Solution solution;
     {
-        const std::string ransomNote = "a";
-        const std::string magazine = "b";
+        const string ransomNote = "a";
+        const string magazine = "b";
 
         const bool expected_output = false;
         const bool output = solution.canConstruct(ransomNote, magazine);
@@ -81,8 +82,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string ransomNote = "aa";
-        const std::string magazine = "ab";
+        const string ransomNote = "aa";
+        const string magazine = "ab";
 
         const bool expected_output = false;
         const bool output = solution.canConstruct(ransomNote, magazine);
@@ -90,8 +91,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string ransomNote = "aa";
-        const std::string magazine = "aab";
+        const string ransomNote = "aa";
+        const string magazine = "aab";
 
         const bool expected_output = true;
         const bool output = solution.canConstruct(ransomNote, magazine);
@@ -99,5 +100,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

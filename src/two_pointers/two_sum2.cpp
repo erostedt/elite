@@ -50,14 +50,14 @@ class Solution
   public:
     vector<int> twoSum(vector<int> &numbers, int target)
     {
-        if (std::size(numbers) < 2)
+        if (size(numbers) < 2)
         {
             return {};
         }
 
-        auto start = std::cbegin(numbers);
-        auto forward = std::cbegin(numbers);
-        auto backward = std::prev(std::cend(numbers));
+        auto start = cbegin(numbers);
+        auto forward = cbegin(numbers);
+        auto backward = prev(cend(numbers));
         while (forward <= backward)
         {
             const int sum = *forward + *backward;
@@ -75,8 +75,8 @@ class Solution
             }
         }
 
-        const int index1 = static_cast<int>(std::distance(start, forward)) + 1;
-        const int index2 = static_cast<int>(std::distance(start, backward)) + 1;
+        const int index1 = static_cast<int>(distance(start, forward)) + 1;
+        const int index2 = static_cast<int>(distance(start, backward)) + 1;
 
         return {index1, index2};
     }
@@ -86,32 +86,32 @@ int main()
 {
     Solution solution;
     {
-        std::vector numbers = {2, 7, 11, 15};
+        vector numbers = {2, 7, 11, 15};
         const int target = 9;
 
-        const std::vector expected_output = {1, 2};
-        const std::vector output = solution.twoSum(numbers, target);
+        const vector expected_output = {1, 2};
+        const vector output = solution.twoSum(numbers, target);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::vector numbers = {2, 3, 4};
+        vector numbers = {2, 3, 4};
         const int target = 6;
 
-        const std::vector expected_output = {1, 3};
-        const std::vector output = solution.twoSum(numbers, target);
+        const vector expected_output = {1, 3};
+        const vector output = solution.twoSum(numbers, target);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::vector numbers = {-1, 0};
+        vector numbers = {-1, 0};
         const int target = -1;
 
-        const std::vector expected_output = {1, 2};
-        const std::vector output = solution.twoSum(numbers, target);
+        const vector expected_output = {1, 2};
+        const vector output = solution.twoSum(numbers, target);
 
         Assert::equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

@@ -32,9 +32,9 @@ strs[i] consists of only lowercase English letters.
 
 using namespace std;
 
-size_t first_diff(std::string_view str, std::string_view other)
+size_t first_diff(string_view str, string_view other)
 {
-    size_t min = std::min(std::size(str), std::size(other));
+    size_t min = std::min(size(str), size(other));
     for (size_t i = 0; i < min; ++i)
     {
         if (str[i] != other[i])
@@ -50,14 +50,14 @@ class Solution
   public:
     string longestCommonPrefix(vector<string> &strs)
     {
-        std::string_view prefix = strs.front();
+        string_view prefix = strs.front();
         size_t size = std::size(prefix);
         for (size_t i = 1; i < std::size(strs); ++i)
         {
             size = first_diff(prefix, strs[i]);
             prefix = prefix.substr(0, size);
         }
-        return std::string(prefix);
+        return string(prefix);
     }
 };
 
@@ -65,21 +65,21 @@ int main()
 {
     Solution solution;
     {
-        std::vector<std::string> strs = {"flower", "flow", "flight"};
+        vector<string> strs = {"flower", "flow", "flight"};
 
-        const std::string expected_output = "fl";
-        const std::string output = solution.longestCommonPrefix(strs);
+        const string expected_output = "fl";
+        const string output = solution.longestCommonPrefix(strs);
 
         Assert::equals(output, expected_output);
     }
     {
-        std::vector<std::string> strs = {"dog", "racecar", "car"};
+        vector<string> strs = {"dog", "racecar", "car"};
 
-        const std::string expected_output = "";
-        const std::string output = solution.longestCommonPrefix(strs);
+        const string expected_output = "";
+        const string output = solution.longestCommonPrefix(strs);
 
         Assert::equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

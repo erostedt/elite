@@ -202,17 +202,16 @@ int main()
         Assert::equals(output, expected_output);
     }
     {
-        std::vector<std::string> words = {"Science", "is", "what",       "we",   "understand", "well",
-                                          "enough",  "to", "explain",    "to",   "a",          "computer.",
-                                          "Art",     "is", "everything", "else", "we",         "do"};
+        vector<string> words = {"Science", "is", "what",       "we",   "understand", "well",
+                                "enough",  "to", "explain",    "to",   "a",          "computer.",
+                                "Art",     "is", "everything", "else", "we",         "do"};
         const int maxWidth = 20;
 
-        std::vector<std::string> expected_output = {"Science  is  what we", "understand      well",
-                                                    "enough to explain to", "a  computer.  Art is",
-                                                    "everything  else  we", "do                  "};
-        const std::vector<std::string> output = solution.fullJustify(words, maxWidth);
+        vector<string> expected_output = {"Science  is  what we", "understand      well", "enough to explain to",
+                                          "a  computer.  Art is", "everything  else  we", "do                  "};
+        const vector<string> output = solution.fullJustify(words, maxWidth);
 
         Assert::equals(output, expected_output);
     }
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

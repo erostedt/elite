@@ -62,7 +62,7 @@ class Solution
   public:
     int removeDuplicates(vector<int> &nums)
     {
-        std::unordered_map<int, int> counter;
+        unordered_map<int, int> counter;
         auto update_counter = [&counter](const int element) {
             if (!counter.contains(element))
             {
@@ -72,7 +72,7 @@ class Solution
             count++;
             return count > 2;
         };
-        return std::distance(std::begin(nums), std::remove_if(std::begin(nums), std::end(nums), update_counter));
+        return distance(begin(nums), remove_if(begin(nums), end(nums), update_counter));
     }
 };
 
@@ -80,7 +80,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums{1, 1, 1, 2, 2, 3};
+        vector<int> nums{1, 1, 1, 2, 2, 3};
 
         const int expected_output = 5;
         const int output = solution.removeDuplicates(nums);
@@ -88,7 +88,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector<int> nums{0, 0, 1, 1, 1, 1, 2, 3, 3};
+        vector<int> nums{0, 0, 1, 1, 1, 1, 2, 3, 3};
 
         const int expected_output = 7;
         const int output = solution.removeDuplicates(nums);
@@ -96,5 +96,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

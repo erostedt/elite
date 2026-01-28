@@ -35,7 +35,7 @@ using namespace std;
 
 template <typename Iterator> bool can_reach_target(const Iterator current, const Iterator target)
 {
-    return std::distance(current, target) <= *current;
+    return distance(current, target) <= *current;
 }
 
 template <typename Iterator> bool can_jump(const Iterator beginning, const Iterator current, const Iterator target)
@@ -46,9 +46,9 @@ template <typename Iterator> bool can_jump(const Iterator beginning, const Itera
     }
     else if (can_reach_target(current, target))
     {
-        return can_jump(beginning, std::prev(current), current);
+        return can_jump(beginning, prev(current), current);
     }
-    return can_jump(beginning, std::prev(current), target);
+    return can_jump(beginning, prev(current), target);
 }
 
 class Solution
@@ -56,9 +56,7 @@ class Solution
   public:
     bool canJump(vector<int> &nums)
     {
-        return (nums.size() < 2)
-                   ? true
-                   : can_jump(std::cbegin(nums), std::prev(std::cend(nums), 2), std::prev(std::cend(nums)));
+        return (nums.size() < 2) ? true : can_jump(cbegin(nums), prev(cend(nums), 2), prev(cend(nums)));
     }
 };
 
@@ -66,7 +64,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector nums{2, 3, 1, 1, 4};
+        vector nums{2, 3, 1, 1, 4};
 
         const bool expected_output = true;
         const bool output = solution.canJump(nums);
@@ -74,7 +72,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector nums{3, 2, 1, 0, 4};
+        vector nums{3, 2, 1, 0, 4};
 
         const bool expected_output = false;
         const bool output = solution.canJump(nums);
@@ -82,5 +80,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

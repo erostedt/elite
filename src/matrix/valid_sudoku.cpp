@@ -70,7 +70,7 @@ class Solution
 
         for (const auto &row : board)
         {
-            std::array<bool, grid_size> taken{};
+            array<bool, grid_size> taken{};
             for (const auto &digit : row)
             {
                 if (digit == '.')
@@ -89,7 +89,7 @@ class Solution
 
         for (size_t c = 0; c < grid_size; ++c)
         {
-            std::array<bool, grid_size> taken{};
+            array<bool, grid_size> taken{};
             for (size_t r = 0; r < grid_size; ++r)
             {
                 char digit = board[r][c];
@@ -110,7 +110,7 @@ class Solution
         {
             for (size_t cc = 0; cc < grid_size / cell_size; ++cc)
             {
-                std::array<bool, grid_size> taken{};
+                array<bool, grid_size> taken{};
                 size_t row_start = cr * cell_size;
                 size_t row_end = (cr + 1) * cell_size;
                 size_t col_start = cc * cell_size;
@@ -197,5 +197,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

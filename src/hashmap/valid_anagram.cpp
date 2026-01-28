@@ -32,11 +32,11 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 #include "assert.hpp"
 
 using namespace std;
-using CharCountMap = std::unordered_map<char, size_t>;
+using CharCountMap = unordered_map<char, size_t>;
 
-CharCountMap char_counts(const std::string &str)
+CharCountMap char_counts(const string &str)
 {
-    std::unordered_map<char, size_t> count;
+    unordered_map<char, size_t> count;
     for (const char ch : str)
     {
         count[ch] += 1;
@@ -46,8 +46,8 @@ CharCountMap char_counts(const std::string &str)
 
 bool hashmap_equals(const CharCountMap &map1, const CharCountMap &map2)
 {
-    const auto map1_end = std::cend(map1);
-    const auto map2_end = std::cend(map2);
+    const auto map1_end = cend(map1);
+    const auto map2_end = cend(map2);
     for (const auto &[ch, count] : map1)
     {
         const auto &value = map2.find(ch);
@@ -72,7 +72,7 @@ class Solution
   public:
     bool isAnagram(string s, string t)
     {
-        return (std::size(s) != std::size(t)) ? false : hashmap_equals(char_counts(s), char_counts(t));
+        return (size(s) != size(t)) ? false : hashmap_equals(char_counts(s), char_counts(t));
     }
 };
 
@@ -80,8 +80,8 @@ int main()
 {
     Solution solution;
     {
-        const std::string s = "anagram";
-        const std::string t = "nagaram";
+        const string s = "anagram";
+        const string t = "nagaram";
 
         const bool expected_output = true;
         const bool output = solution.isAnagram(s, t);
@@ -89,8 +89,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        const std::string s = "rat";
-        const std::string t = "car";
+        const string s = "rat";
+        const string t = "car";
 
         const bool expected_output = false;
         const bool output = solution.isAnagram(s, t);
@@ -98,5 +98,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

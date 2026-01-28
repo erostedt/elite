@@ -43,11 +43,10 @@ class Solution
     int maxProfit(vector<int> &prices)
     {
         int min_seen = prices.front();
-        return std::accumulate(std::begin(prices), std::end(prices), 0,
-                               [&min_seen](const int max_profit, const int price) {
-                                   min_seen = std::ranges::min(price, min_seen);
-                                   return std::ranges::max(price - min_seen, max_profit);
-                               });
+        return accumulate(begin(prices), end(prices), 0, [&min_seen](const int max_profit, const int price) {
+            min_seen = ranges::min(price, min_seen);
+            return ranges::max(price - min_seen, max_profit);
+        });
     }
 };
 
@@ -55,7 +54,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector prices{7, 1, 5, 3, 6, 4};
+        vector prices{7, 1, 5, 3, 6, 4};
 
         const int expected_output = 5;
         const int output = solution.maxProfit(prices);
@@ -63,7 +62,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector prices{7, 6, 4, 3, 1};
+        vector prices{7, 6, 4, 3, 1};
 
         const int expected_output = 0;
         const int output = solution.maxProfit(prices);
@@ -71,5 +70,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

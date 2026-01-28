@@ -65,10 +65,10 @@ class Solution
 
 int main()
 {
-    using Matrix = std::vector<std::vector<std::string>>;
+    using Matrix = vector<vector<string>>;
     Solution solution;
     {
-        std::vector<std::string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
 
         const Matrix expected_output = {{"bat"}, {"nat", "tan"}, {"ate", "eat", "tea"}};
         const Matrix output = solution.groupAnagrams(strs);
@@ -76,7 +76,7 @@ int main()
         Assert::matrix_equals(output, expected_output);
     }
     {
-        std::vector<std::string> strs = {""};
+        vector<string> strs = {""};
 
         const Matrix expected_output = {{""}};
         const Matrix output = solution.groupAnagrams(strs);
@@ -84,7 +84,7 @@ int main()
         Assert::matrix_equals(output, expected_output);
     }
     {
-        std::vector<std::string> strs = {"a"};
+        vector<string> strs = {"a"};
 
         const Matrix expected_output = {{"a"}};
         const Matrix output = solution.groupAnagrams(strs);
@@ -92,5 +92,5 @@ int main()
         Assert::matrix_equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

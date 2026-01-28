@@ -77,7 +77,7 @@ class Solution
 
 int main()
 {
-    using Matrix = std::vector<std::vector<int>>;
+    using Matrix = vector<vector<int>>;
 
     Solution solution;
     {
@@ -96,5 +96,5 @@ int main()
         Assert::matrix_equals(matrix, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

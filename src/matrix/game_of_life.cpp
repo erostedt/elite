@@ -128,5 +128,5 @@ int main()
         Assert::matrix_equals(board, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

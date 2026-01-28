@@ -44,18 +44,18 @@ class Solution
   public:
     int candy(vector<int> &ratings)
     {
-        std::vector<int> candies(std::size(ratings), 1);
-        for (size_t i = 1; i < std::size(ratings); ++i)
+        vector<int> candies(size(ratings), 1);
+        for (size_t i = 1; i < size(ratings); ++i)
         {
             if (ratings[i] > ratings[i - 1])
                 candies[i] = candies[i - 1] + 1;
         }
-        for (size_t i = std::size(ratings) - 1; i > 0; --i)
+        for (size_t i = size(ratings) - 1; i > 0; --i)
         {
             if (ratings[i - 1] > ratings[i])
-                candies[i - 1] = std::max(candies[i] + 1, candies[i - 1]);
+                candies[i - 1] = max(candies[i] + 1, candies[i - 1]);
         }
-        return std::reduce(std::cbegin(candies), std::cend(candies), 0, std::plus<>{});
+        return reduce(cbegin(candies), cend(candies), 0, plus<>{});
     }
 };
 
@@ -63,7 +63,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector ratings = {1, 0, 2};
+        vector ratings = {1, 0, 2};
 
         const int expected_output = 5;
         const int output = solution.candy(ratings);
@@ -71,7 +71,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector ratings = {1, 2, 2};
+        vector ratings = {1, 2, 2};
 
         const int expected_output = 4;
         const int output = solution.candy(ratings);
@@ -79,5 +79,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

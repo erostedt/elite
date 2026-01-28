@@ -58,7 +58,7 @@ class RandomizedSet
   public:
     RandomizedSet()
     {
-        m_random_generator = std::mt19937(m_random_device());
+        m_random_generator = mt19937(m_random_device());
     }
 
     bool insert(int val)
@@ -80,7 +80,7 @@ class RandomizedSet
         }
         const auto index = m_index_lookup.at(val);
         m_index_lookup.at(m_elements.back()) = index;
-        std::swap(m_elements.at(index), m_elements.back());
+        swap(m_elements.at(index), m_elements.back());
         m_elements.pop_back();
         m_index_lookup.erase(val);
         return true;
@@ -88,29 +88,29 @@ class RandomizedSet
 
     int getRandom()
     {
-        std::uniform_int_distribution<int> distribution(0, m_elements.size() - 1);
+        uniform_int_distribution<int> distribution(0, m_elements.size() - 1);
         return m_elements.at(distribution(m_random_generator));
     }
 
     void show()
     {
-        std::cout << "Lookup: " << std::endl;
+        cout << "Lookup: " << endl;
         for (const auto &[key, value] : m_index_lookup)
         {
-            std::cout << key << " -> " << value << std::endl;
+            cout << key << " -> " << value << endl;
         }
-        std::cout << "Elements: " << std::endl;
+        cout << "Elements: " << endl;
         for (const auto &element : m_elements)
         {
-            std::cout << element << std::endl;
+            cout << element << endl;
         }
     }
 
   private:
-    std::unordered_map<int, size_t> m_index_lookup;
-    std::vector<int> m_elements;
-    std::mt19937 m_random_generator;
-    std::random_device m_random_device;
+    unordered_map<int, size_t> m_index_lookup;
+    vector<int> m_elements;
+    mt19937 m_random_generator;
+    random_device m_random_device;
 };
 
 /**
@@ -148,5 +148,5 @@ int main()
         rset.show();
         Assert::equal(rset.getRandom(), 2);
     }
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

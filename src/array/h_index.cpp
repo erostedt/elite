@@ -40,9 +40,9 @@ class Solution
   public:
     int hIndex(vector<int> &citations)
     {
-        std::sort(std::begin(citations), std::end(citations));
+        sort(begin(citations), end(citations));
 
-        int n = std::size(citations);
+        int n = size(citations);
         for (int i = 0; i < n; ++i)
         {
             if (n - i <= citations[i])
@@ -58,7 +58,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector citations = {3, 0, 6, 1, 5};
+        vector citations = {3, 0, 6, 1, 5};
 
         const int expected_output = 3;
         const int output = solution.hIndex(citations);
@@ -66,7 +66,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector citations = {1, 3, 1};
+        vector citations = {1, 3, 1};
 
         const int expected_output = 1;
         const int output = solution.hIndex(citations);
@@ -74,7 +74,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector citations = {1, 2, 2};
+        vector citations = {1, 2, 2};
 
         const int expected_output = 2;
         const int output = solution.hIndex(citations);
@@ -82,7 +82,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector citations = {1};
+        vector citations = {1};
 
         const int expected_output = 1;
         const int output = solution.hIndex(citations);
@@ -90,7 +90,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector citations = {0};
+        vector citations = {0};
 
         const int expected_output = 0;
         const int output = solution.hIndex(citations);
@@ -98,5 +98,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

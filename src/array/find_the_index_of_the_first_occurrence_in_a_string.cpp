@@ -35,7 +35,7 @@ class Solution
     int strStr(string haystack, string needle)
     {
         const auto first_occurrence = haystack.find(needle);
-        return (first_occurrence == std::string::npos) ? -1 : first_occurrence;
+        return (first_occurrence == string::npos) ? -1 : first_occurrence;
     }
 };
 
@@ -43,8 +43,8 @@ int main()
 {
     Solution solution;
     {
-        std::string haystack = "sadbutsad";
-        std::string needle = "sad";
+        string haystack = "sadbutsad";
+        string needle = "sad";
 
         const int expected_output = 0;
         const int output = solution.strStr(haystack, needle);
@@ -52,8 +52,8 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::string haystack = "leetcode";
-        std::string needle = "leeto";
+        string haystack = "leetcode";
+        string needle = "leeto";
 
         const int expected_output = -1;
         const int output = solution.strStr(haystack, needle);
@@ -61,5 +61,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

@@ -42,19 +42,18 @@ class Solution
   public:
     int maxArea(vector<int> &height)
     {
-        if (std::size(height) < 2)
+        if (size(height) < 2)
         {
             return 0;
         }
 
-        auto forward = std::cbegin(height);
-        auto backward = std::prev(std::cend(height));
+        auto forward = cbegin(height);
+        auto backward = prev(cend(height));
 
         int max_seen = 0;
         while (forward < backward)
         {
-            max_seen =
-                std::max(max_seen, std::min(*forward, *backward) * static_cast<int>(std::distance(forward, backward)));
+            max_seen = max(max_seen, min(*forward, *backward) * static_cast<int>(distance(forward, backward)));
 
             if (*forward > *backward)
             {
@@ -73,7 +72,7 @@ int main()
 {
     Solution solution;
     {
-        std::vector height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        vector height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
         const int expected_output = 49;
         const int output = solution.maxArea(height);
@@ -81,7 +80,7 @@ int main()
         Assert::equal(output, expected_output);
     }
     {
-        std::vector height = {1, 1};
+        vector height = {1, 1};
 
         const int expected_output = 1;
         const int output = solution.maxArea(height);
@@ -89,5 +88,5 @@ int main()
         Assert::equal(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

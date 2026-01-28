@@ -32,28 +32,85 @@ class Solution
   public:
     vector<int> spiralOrder(vector<vector<int>> &matrix)
     {
-        NOT_IMPLEMENTED;
+        vector<int> result{};
+        if (matrix.empty())
+        {
+            return result;
+        }
+
+        result.reserve(matrix.size() * matrix[0].size());
+        int top = 0;
+        int bottom = (int)matrix.size() - 1;
+        int left = 0;
+        int right = (int)matrix[0].size() - 1;
+
+        while (true)
+        {
+            for (int x = left; x <= right; ++x)
+            {
+                result.push_back(matrix[top][x]);
+            }
+            ++top;
+            if (top > bottom)
+            {
+                break;
+            }
+
+            for (int y = top; y <= bottom; ++y)
+            {
+                result.push_back(matrix[y][right]);
+            }
+            --right;
+            if (left > right)
+            {
+                break;
+            }
+
+            for (int x = right; x >= left; --x)
+            {
+                result.push_back(matrix[bottom][x]);
+            }
+            --bottom;
+            if (top > bottom)
+            {
+                break;
+            }
+
+            for (int y = bottom; y >= top; --y)
+            {
+                result.push_back(matrix[y][left]);
+            }
+            ++left;
+            if (left > right)
+            {
+                break;
+            }
+        }
+        return result;
     }
 };
 
 int main()
 {
+    using Matrix = vector<vector<int>>;
+
     Solution solution;
     {
-        std::vector<std::vector<int>> matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        Matrix matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-        const std::vector<int> expected_output = {1, 2, 3, 6, 9, 8, 7, 4, 5};
-        const std::vector<int> output = solution.spiralOrder(matrix);
+        const vector<int> expected_output = {1, 2, 3, 6, 9, 8, 7, 4, 5};
+        const vector<int> output = solution.spiralOrder(matrix);
 
         Assert::equals(output, expected_output);
     }
+
     {
-        std::vector<std::vector<int>> matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+        Matrix matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 
-        const std::vector<int> expected_output = {1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7};
-        const std::vector<int> output = solution.spiralOrder(matrix);
+        const vector<int> expected_output = {1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7};
+        const vector<int> output = solution.spiralOrder(matrix);
 
         Assert::equals(output, expected_output);
     }
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

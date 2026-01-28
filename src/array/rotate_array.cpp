@@ -51,7 +51,7 @@ class Solution
         }
 
         const int rotations = k % nums.size();
-        std::rotate(std::rbegin(nums), std::rbegin(nums) + rotations, std::rend(nums));
+        std::rotate(rbegin(nums), rbegin(nums) + rotations, rend(nums));
     }
 };
 
@@ -59,22 +59,22 @@ int main()
 {
     Solution solution;
     {
-        std::vector<int> nums = {1, 2, 3, 4, 5, 6, 7};
+        vector<int> nums = {1, 2, 3, 4, 5, 6, 7};
         const int k = 3;
 
-        std::vector<int> expected_output = {5, 6, 7, 1, 2, 3, 4};
+        vector<int> expected_output = {5, 6, 7, 1, 2, 3, 4};
         solution.rotate(nums, k);
 
         Assert::equals(nums, expected_output);
     }
     {
-        std::vector<int> nums = {-1, -100, 3, 99};
+        vector<int> nums = {-1, -100, 3, 99};
         const int k = 2;
 
-        std::vector<int> expected_output = {3, 99, -1, -100};
+        vector<int> expected_output = {3, 99, -1, -100};
         solution.rotate(nums, k);
 
         Assert::equals(nums, expected_output);
     }
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }

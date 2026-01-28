@@ -86,14 +86,14 @@ int main()
         Assert::matrix_equals(output, expected_output);
     }
     {
-        std::vector<std::vector<int>> intervals = {{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}};
-        std::vector<int> newInterval = {4, 8};
+        vector<vector<int>> intervals = {{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}};
+        vector<int> newInterval = {4, 8};
 
-        const std::vector<std::vector<int>> expected_output = {{1, 2}, {3, 10}, {12, 16}};
-        const std::vector<std::vector<int>> output = solution.insert(intervals, newInterval);
+        const vector<vector<int>> expected_output = {{1, 2}, {3, 10}, {12, 16}};
+        const vector<vector<int>> output = solution.insert(intervals, newInterval);
 
         Assert::matrix_equals(output, expected_output);
     }
 
-    std::cout << "All passed" << std::endl;
+    cout << "All passed" << endl;
 }
