@@ -28,16 +28,43 @@ Follow up: Can you come up with an algorithm that runs in O(n log(n)) time compl
 */
 
 #include "assert.hpp"
+#include <cassert>
 #include <iostream>
+#include <unordered_map>
 
 using namespace std;
+
+using DP = vector<vector<int>>;
 
 class Solution
 {
   public:
+    int lengthOfLIS(vector<int> &nums, int index, int prev_index, DP &dp)
+    {
+        if (index == size(nums))
+        {
+            return 0;
+        }
+
+        auto &dp_entry = dp[index][prev_index + 1];
+        if (dp_entry != -1)
+        {
+            return dp_entry;
+        }
+
+        const int skip = lengthOfLIS(nums, index + 1, prev_index, dp);
+        const int take =
+            prev_index == -1 || nums[index] > nums[prev_index] ? 1 + lengthOfLIS(nums, index + 1, index, dp) : 0;
+        const int best = max(skip, take);
+        dp_entry = best;
+        return best;
+    }
+
     int lengthOfLIS(vector<int> &nums)
     {
-        NOT_IMPLEMENTED;
+        vector<int> row(size(nums) + 1, -1);
+        DP dp(size(nums), row);
+        return lengthOfLIS(nums, 0, -1, dp);
     }
 };
 
