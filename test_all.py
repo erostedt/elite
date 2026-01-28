@@ -74,10 +74,15 @@ def get_total_problem_count(section_results: list[SectionResult]) -> int:
     return sum(section_result.problem_count for section_result in section_results)
 
 
+def section_sort_func(section: SectionResult) -> float:
+    return section.pass_count / section.problem_count
+
+
 def main():
     BUILD_DIR = Path("build")
     sections = sorted((path.name for path in Path("src").iterdir() if path.is_dir()))
     section_results = [get_section_result(BUILD_DIR / section) for section in sections]
+    section_results.sort(key=section_sort_func, reverse=True)
     for section_result in section_results:
         print_section_result(section_result)
 
