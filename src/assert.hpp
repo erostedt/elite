@@ -126,7 +126,7 @@ template <typename Matrix> static void matrix_equals(const Matrix &lhs, const Ma
 
     for (size_t row = 0; row < std::size(lhs); ++row)
     {
-        equals(lhs[0], rhs[0]);
+        equals(lhs[row], rhs[row]);
     }
 }
 
